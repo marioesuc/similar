@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Alert, Button, TextInput, View, Image } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 
-export default class Login extends Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
     
@@ -36,19 +35,17 @@ export default class Login extends Component {
           secureTextEntry
           style={styles.input}
         />
-        
-        <View style={{ flexDirection: 'row', width: 300 }}>
-            <View style={{ flex: 1, marginRight: 10 }}>
-                <Button title='Entrar' onPress={() => {}} />
-            </View>
-            <View style={{ flex: 1 }} >
-                <Button
-                  title='Registro' onPress={() => {
-                  Actions.register();
-                }}
-                />
-            </View>
-        </View>
+        <TextInput
+          value={this.state.password}
+          onChangeText={(password) => this.setState({ password })}
+          placeholder={'Repite contraseña'}
+          secureTextEntry
+          style={styles.input}
+        />
+
+        <Button style={styles.button} title='Registrarse' onPress={() => {}} />
+           
+
       </View>
     );
   }
@@ -58,7 +55,6 @@ const styles = {
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#ccf1f3',
   },
   input: {
@@ -68,10 +64,11 @@ const styles = {
     marginBottom: 10,
   },
   logo: {
-    width: 250,
-    height: 200
+    marginTop: 20,
+    width: 200,
+    height: 173
   },
   button: {
-    padding: 20
+    alignItems: 'center'
   }
 };
