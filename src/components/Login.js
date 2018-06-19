@@ -39,13 +39,19 @@ export default class Login extends Component {
         
         <View style={{ flexDirection: 'row', width: 300 }}>
             <View style={{ flex: 1, marginRight: 10 }}>
-                <Button title='Entrar' onPress={() => {}} />
+                <Button
+                  title='Entrar'
+                  onPress={() => {
+                    Actions.menu();
+                  }}
+                />
             </View>
             <View style={{ flex: 1 }} >
                 <Button
-                  title='Registro' onPress={() => {
-                  Actions.register();
-                }}
+                  title='Registro'
+                  onPress={() => {
+                    Actions.register();
+                  }}
                 />
             </View>
         </View>
