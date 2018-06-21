@@ -3,6 +3,7 @@ import { Scene, Router } from 'react-native-router-flux';
 import Login from './src/components/Login';
 import Register from './src/components/Register';
 import Menu from './src/components/Menu';
+import Vocab from './src/components/Vocab';
 
 const RouterComponent = () => {
 	return (
@@ -12,9 +13,9 @@ const RouterComponent = () => {
 					<Scene key="login" component={Login} title="Please Login" hideNavBar initial />
 					<Scene key="register" component={Register} title="Registro" />
 				</Scene>
-				<Scene key="main">
+				<Scene key="main" >
 					<Scene key="menu" component={Menu} title="Principal" hideNavBar initial />
-					<Scene key="about" component={Menu} title="Principal" hideNavBar initial />
+					<Scene key="vocab" component={Vocab} title="Vocabulario"  />
 				</Scene>
 			</Scene>
 		</Router>

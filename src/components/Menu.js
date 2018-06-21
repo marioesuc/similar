@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Alert, Button, View, Image } from 'react-native';
-import { Card, CardSection } from './common';
+import { Card } from './common';
+import { Actions } from 'react-native-router-flux';
 
 export default class Register extends Component {
   constructor(props) {
@@ -26,7 +27,13 @@ export default class Register extends Component {
         </View>
         <Card>
           <View style={{ width: '100%', padding: 10 }}>
-            <Button style={styles.button} title='Vocabulario' onPress={() => {}} />
+            <Button
+              style={styles.button}
+              title='Vocabulario'
+              onPress={() => {
+                Actions.vocab();
+              }}
+            />
           </View> 
 
           <View style={{ width: '100%', padding: 10 }}>
