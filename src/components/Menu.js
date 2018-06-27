@@ -37,8 +37,14 @@ export default class Register extends Component {
           </View> 
 
           <View style={{ width: '100%', padding: 10 }}>
-            <Button style={styles.button} title='Gramática' onPress={() => {}} />
-          </View> 
+            <Button
+              style={styles.button}
+              title='Gramática'
+              onPress={() => {
+                Actions.grammar();
+              }}
+            />
+          </View>  
 
           <View style={{ width: '100%', padding: 10 }}>
             <Button style={styles.button} title='Acerca de' onPress={() => {}} />

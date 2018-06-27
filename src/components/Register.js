@@ -8,6 +8,7 @@ export default class Register extends Component {
     this.state = {
       username: '',
       password: '',
+      repeatedPassword: ''
     };
   }
   
@@ -25,6 +26,7 @@ export default class Register extends Component {
         </View>
         <TextInput
           value={this.state.username}
+          onChangeText={(username) => this.setState({ username })}
           placeholder={'Usuario'}
           style={styles.input}
         />
@@ -36,8 +38,8 @@ export default class Register extends Component {
           style={styles.input}
         />
         <TextInput
-          value={this.state.password}
-          onChangeText={(password) => this.setState({ password })}
+          value={this.state.repeatedPassword}
+          onChangeText={(repeatedPassword) => this.setState({ repeatedPassword })}
           placeholder={'Repite contraseña'}
           secureTextEntry
           style={styles.input}

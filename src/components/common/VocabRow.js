@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 const VocabRow = (props) => {
-  console.log(props);
   return (
     /* Si utilizamos la sintaxis de array, el argumento de la derecha
     tiene prioridad en caso de que se le pase como argumento en la prop*/
