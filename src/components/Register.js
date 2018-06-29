@@ -6,16 +6,16 @@ export default class Register extends Component {
     super(props);
     
     this.state = {
-      username: '',
+      email: '',
       password: '',
       repeatedPassword: ''
     };
   }
   
   onLogin() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
-    Alert.alert('Credentials', `${username} + ${password}`);
+    Alert.alert('Credentials', `${email} + ${password}`);
   }
 
   render() {
@@ -25,9 +25,9 @@ export default class Register extends Component {
           <Image style={styles.logo} source={require('../../images/similar_logo.png')} />
         </View>
         <TextInput
-          value={this.state.username}
-          onChangeText={(username) => this.setState({ username })}
-          placeholder={'Usuario'}
+          value={this.state.email}
+          onChangeText={(email) => this.setState({ email })}
+          placeholder={'E-mail'}
           style={styles.input}
         />
         <TextInput

@@ -3,18 +3,18 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
-//import reducers from './reducers';
+import reducers from './reducers';
 import Router from './Router';
 
 class App extends Component {
   componentWillMount() {
     const config = {
-      apiKey: 'AIzaSyCsA4ByBUMAKpwq94Puyau0kpil12KNGuM',
-      authDomain: 'manager-708bb.firebaseapp.com',
-      databaseURL: 'https://manager-708bb.firebaseio.com',
-      projectId: 'manager-708bb',
-      storageBucket: 'manager-708bb.appspot.com',
-      messagingSenderId: '263521345118'
+      apiKey: 'AIzaSyCgs9z7v6w2CycXxtmYO7_56gqndeven2M',
+      authDomain: 'similar-c1bf4.firebaseapp.com',
+      databaseURL: 'https://similar-c1bf4.firebaseio.com',
+      projectId: 'similar-c1bf4',
+      storageBucket: 'similar-c1bf4.appspot.com',
+      messagingSenderId: '280148986434'
     };
 
     firebase.initializeApp(config);
@@ -26,9 +26,9 @@ class App extends Component {
       //1. Pasa el conjunto de reducers
       //2. Pasa un estado inicial si lo deseamos (no tiene por qué)
       //3. Funcionalidad adicional para la Store, en este caso un Middlware
-      //<Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
+      <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
         <Router />
-      //</Provider>
+      </Provider>
     );
   }
 }
