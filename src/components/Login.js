@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
-import { Alert, Button, TextInput, View, Image } from 'react-native';
+import { Alert, Button, TextInput, View, Image, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { emailChanged, passwordChanged, loginUser } from '../actions';
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      username: '',
+      email: '',
       password: '',
     };
   }
+
+  onEmailChange(text) {
+    //emailChanged es la función Action Creator que hemos importado arriba
+    this.props.emailChanged(text);
+  }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  }
+
+  onButtonPress() {
+    const { email, password } = this.props;
+
+    this.props.loginUser({ email, password });
+  }
   
   onLogin() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
-    Alert.alert('Credentials', `${username} + ${password}`);
+    Alert.alert('Credentials', `${email} + ${password}`);
   }
 
   render() {
@@ -25,14 +42,14 @@ export default class Login extends Component {
           <Image style={styles.logo} source={require('../../images/similar_logo.png')} />
         </View>
         <TextInput
-          value={this.state.username}
-          onChangeText={(username) => this.setState({ username })}
-          placeholder={'Usuario'}
+          value={this.props.email}
+          onChangeText={this.onEmailChange.bind(this)}
+          placeholder={'E-mail'}
           style={styles.input}
         />
         <TextInput
-          value={this.state.password}
-          onChangeText={(password) => this.setState({ password })}
+          value={this.props.password}
+          onChangeText={this.onPasswordChange.bind(this)}
           placeholder={'Contraseña'}
           secureTextEntry
           style={styles.input}
@@ -42,9 +59,7 @@ export default class Login extends Component {
             <View style={{ flex: 1, marginRight: 10 }}>
                 <Button
                   title='Entrar'
-                  onPress={() => {
-                    Actions.menu();
-                  }}
+                  onPress={this.onButtonPress.bind(this)}
                 />
             </View>
             <View style={{ flex: 1 }} >
@@ -56,6 +71,9 @@ export default class Login extends Component {
                 />
             </View>
         </View>
+        <Text style={styles.errorTextStyle}>
+          {this.props.error}
+        </Text>
       </View>
     );
   }
@@ -80,5 +98,21 @@ const styles = {
   },
   button: {
     padding: 20
+  },
+  errorTextStyle: {
+    marginTop: 20,
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
   }
 };
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password, error, loading } = auth;
+  return { email, password, error, loading };
+};
+
+
+export default connect(mapStateToProps, { 
+  emailChanged, passwordChanged, loginUser 
+})(Login);

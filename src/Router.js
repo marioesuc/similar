@@ -1,11 +1,11 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
-import Login from './src/components/Login';
-import Register from './src/components/Register';
-import Menu from './src/components/Menu';
-import Vocab from './src/components/Vocab';
-import Grammar from './src/components/Grammar';
-import VideoViewer from './src/components/VideoViewer';
+import Login from './components/Login';
+import Register from './components/Register';
+import Menu from './components/Menu';
+import Vocab from './components/Vocab';
+import Grammar from './components/Grammar';
+import VideoViewer from './components/VideoViewer';
 
 const RouterComponent = () => {
 	return (

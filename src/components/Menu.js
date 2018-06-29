@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Alert, Button, View, Image } from 'react-native';
-import { Card } from './common';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { Card } from './common';
+import { logoutUser } from '../actions';
 
-export default class Register extends Component {
+class Menu extends Component {
   constructor(props) {
     super(props);
     
@@ -51,7 +53,7 @@ export default class Register extends Component {
           </View> 
 
           <View style={{ width: '100%', padding: 10 }}>
-            <Button style={styles.button} title='Cerrar sesión' onPress={() => {}} />
+            <Button style={styles.button} title='Cerrar sesión' onPress={this.props.logoutUser} />
           </View> 
         </Card> 
 
@@ -82,3 +84,8 @@ const styles = {
     alignItems: 'center'
   }
 };
+
+
+export default connect(null, { 
+  logoutUser
+})(Menu);
