@@ -6,8 +6,8 @@ import dataSaga from './saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
-export default function configureStore() {
-  const store = createStore(reducers, {}, applyMiddleware(sagaMiddleware));
-  sagaMiddleware.run(dataSaga);
-  return store;
-}
+
+const store = createStore(reducers, {}, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(dataSaga);
+
+export default store;

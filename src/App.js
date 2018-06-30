@@ -23,7 +23,7 @@ class App extends Component {
       //createStore: Parámetros
       //1. Pasa el conjunto de reducers
       //2. Pasa un estado inicial si lo deseamos (no tiene por qué)
-      //3. Funcionalidad adicional para la Store, en este caso un Middlware
+      //3. Funcionalidad adicional para la Store, en este caso un Middleware
       <Provider store={store}>
         <Router />
       </Provider>

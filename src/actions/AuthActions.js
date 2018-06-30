@@ -31,30 +31,8 @@ export const loginUser = ({ email, password }) => {
 	};
 };
 
-const loginUserFail = (dispatch => {
-	dispatch({ type: LOGIN_USER_FAIL });
-});
-
-
-const loginUserSuccess = (dispatch, user) => {
-	dispatch({
-		type: LOGIN_USER_SUCCESS,
-		payload: user
-	});
-
-	Actions.main();
-};
-
-const logoutUserSuccess = (dispatch) => {
-	dispatch({ type: LOGOUT_USER });
-};
-
 export const logoutUser = () => {
-	return (dispatch) => {
-		firebase.auth().signOut()
-		.then(() => {
-			logoutUserSuccess(dispatch);
-			Actions.login();
-		});
-	};		
+	return {
+		type: LOGOUT_USER
+	};	
 };
