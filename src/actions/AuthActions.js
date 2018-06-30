@@ -25,23 +25,9 @@ export const passwordChanged = (text) => {
 };
 
 export const loginUser = ({ email, password }) => {
-	return (dispatch) => {
-		dispatch({ type: LOGIN_USER });
-
-		firebase.auth().signInWithEmailAndPassword(email, password)
-		.then(user => loginUserSuccess(dispatch, user))
-
-		.catch((error) => {
-			/*Este console.log está puesto porque si hay algo mal en el reducer llamado por
-			loginUserSuccess (por ejemplo una variable no declarada), dará un error
-			y en lugar de que el compilador nos lo diga, lo va  ejecutar y va a entrar
-			en el catch, así que la única forma que tenemos de ver qué ocurre es así*/
-			console.log(error);
-
-			firebase.auth().createUserWithEmailAndPassword(email, password)
-			.then(user => loginUserSuccess(dispatch, user))
-			.catch(() => loginUserFail(dispatch));
-		});
+	return {
+		type: LOGIN_USER,
+		payload: { email, password }
 	};
 };
 

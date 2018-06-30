@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
-import ReduxThunk from 'redux-thunk';
-import reducers from './reducers';
+import store from './configureStore';
 import Router from './Router';
 
 class App extends Component {
@@ -26,7 +24,7 @@ class App extends Component {
       //1. Pasa el conjunto de reducers
       //2. Pasa un estado inicial si lo deseamos (no tiene por qué)
       //3. Funcionalidad adicional para la Store, en este caso un Middlware
-      <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
+      <Provider store={store}>
         <Router />
       </Provider>
     );
