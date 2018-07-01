@@ -1,3 +1,5 @@
+// Component that renders screen related to the grammar videos
+
 import React, { Component } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import ListItem from '../common/ListItem';

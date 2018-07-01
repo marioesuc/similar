@@ -1,3 +1,5 @@
+// The Router file is going to manage all the available screens in our app
+// along with the navigation between them
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import Login from './components/screens/Login';

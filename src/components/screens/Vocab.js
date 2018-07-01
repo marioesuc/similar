@@ -1,3 +1,5 @@
+// Component that renders screen related to the vocabulary and flashcards' exercises
+
 import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
@@ -31,7 +33,7 @@ class Vocab extends Component {
     return (
       <View style={styles.container}>
 
-
+      {/* Modal that is going to contain the flipping card */}
       <Modal isVisible={this.state.modalVisible}>
       <View
         style={styles.flipCardContainer} >
@@ -118,6 +120,7 @@ class Vocab extends Component {
         </View>
       </Modal>
 
+        {/* View related to the Progress Bar */}
         <View>
           <Text style={styles.progressLabel}>
             Tu progreso:
@@ -128,17 +131,25 @@ class Vocab extends Component {
             backgroundColorOnComplete="#6CC644"
           />
         </View>
+
+        {/* View related to the words' table */}
         <View style={styles.wordsListContainer}>
           <Text style={styles.wordsListLabel}>
             Listado de palabras:
           </Text>
           <Card>
             <View style={styles.tableHeader}>
-              <VocabRow style={styles.headerRow} >{{ col1: 'Inglés', col2: 'Español', col3: 'Memorizada' }}</VocabRow>
+              <VocabRow
+                style={styles.headerRow}
+              >
+                {{ col1: 'Inglés', col2: 'Español', col3: 'Memorizada' }}
+              </VocabRow>
             </View>
+            {/* The key extractor is needed to generate an unique key for every element
+            into the flatlist */}
             <FlatList
               data={[{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' }]}
-              renderItem={({item}) => <VocabRow>{item}</VocabRow>}
+              renderItem={({ item }) => <VocabRow>{item}</VocabRow>}
               keyExtractor={(item, index) => index.toString()}
             />
           </Card>

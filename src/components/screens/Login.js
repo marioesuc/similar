@@ -1,3 +1,5 @@
+// Component that renders screen related to the login
+
 import React, { Component } from 'react';
 import { Alert, Button, TextInput, View, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';

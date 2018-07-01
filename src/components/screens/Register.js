@@ -1,3 +1,5 @@
+// Component that renders screen related to the register form
+
 import React, { Component } from 'react';
 import { Alert, Button, TextInput, View, Image, StyleSheet } from 'react-native';
 

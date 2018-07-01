@@ -1,3 +1,5 @@
+// Component that renders screen related to main menu options
+
 import React, { Component } from 'react';
 import { Alert, Button, View, Image, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';

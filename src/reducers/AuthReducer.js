@@ -1,3 +1,5 @@
+// All reducers associated to Authentication
+
 import { 
 	EMAIL_CHANGED,
 	PASSWORD_CHANGED,
@@ -16,9 +18,15 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+	// Every single action is going to pass over this point, so a console.log
+	// here is going to help to debug any problem related to the actions
 	console.log(action);
 
+	// Depneding on the action's type, we are going to update the state in a different manner
 	switch (action.type) {
+
+	// Here in the case's clauses is where we are going to reference the variables in Types.js,
+	// that way, if we type any of them with some typo, the syntax analizer is going to tell us
 		case EMAIL_CHANGED:
 			return { ...state, email: action.payload };
 

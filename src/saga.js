@@ -1,3 +1,4 @@
+// Saga file that manages all functions related to the Authentication on Firebase
 import firebase from 'firebase';
 import { put, takeLatest, call } from 'redux-saga/effects';
 import { Actions } from 'react-native-router-flux';
@@ -44,7 +45,6 @@ function* logoutUser(action) {
     console.log(error.message);
   }
 }
-
 
 function* dataSaga() {
   yield takeLatest(LOGIN_USER, loginUser);

@@ -1,3 +1,5 @@
+// Component that renders screen related to the video viewer
+
 import React, { Component } from 'react';
 import { View, WebView, Text, StyleSheet } from 'react-native';
 

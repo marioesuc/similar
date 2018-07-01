@@ -1,11 +1,8 @@
-import firebase from 'firebase';
-import { Actions } from 'react-native-router-flux';
+// These are the action creators associated to the authentication
 
 import { 
 	EMAIL_CHANGED,
 	PASSWORD_CHANGED,
-	LOGIN_USER_SUCCESS,
-	LOGIN_USER_FAIL,
 	LOGIN_USER,
 	LOGOUT_USER
 } from './types';
