@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import ListItem from '../common/ListItem';
+import * as Colors from './styles/Colors';
 
 class Grammar extends Component {
 
@@ -35,7 +36,7 @@ class Grammar extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ccf1f3',
+    backgroundColor: Colors.appBackground,
   }
 });
 

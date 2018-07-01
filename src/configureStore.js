@@ -3,7 +3,7 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import reducers from './reducers';
 
-import dataSaga from './saga';
+import root from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -13,6 +13,6 @@ const sagaMiddleware = createSagaMiddleware();
 //3. Additional functionality added to the Store (in case of middlewares)
 
 const store = createStore(reducers, {}, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(dataSaga);
+sagaMiddleware.run(root);
 
 export default store;

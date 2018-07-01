@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Alert, Button, TextInput, View, Image, StyleSheet } from 'react-native';
+import * as Colors from './styles/Colors';
 
 export default class Register extends Component {
   constructor(props) {
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#ccf1f3',
+    backgroundColor: Colors.appBackground,
   },
   input: {
     width: 300,

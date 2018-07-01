@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { View, WebView, Text, StyleSheet } from 'react-native';
+import * as Colors from './styles/Colors';
 
 class VideoViewer extends Component {
 
@@ -30,7 +31,7 @@ class VideoViewer extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ccf1f3'
+    backgroundColor: Colors.appBackground
   },
   viewer: { height: 200 },
   textBox: {

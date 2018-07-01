@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { Card } from '../common';
 import { logoutUser } from '../../actions';
+import * as Colors from './styles/Colors';
 
 class Menu extends Component {
   constructor(props) {
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#ccf1f3',
+    backgroundColor: Colors.appBackground,
   },
   input: {
     width: 300,

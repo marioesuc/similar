@@ -5,6 +5,7 @@ import { Alert, Button, TextInput, View, Image, Text, StyleSheet } from 'react-n
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../../actions';
+import * as Colors from './styles/Colors';
 
 class Login extends Component {
   constructor(props) {
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ccf1f3',
+    backgroundColor: Colors.appBackground,
   },
   input: {
     width: 300,

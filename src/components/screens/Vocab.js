@@ -10,6 +10,7 @@ import Tts from 'react-native-tts';
 import Icon from 'react-native-fa-icons';
 
 import { Card, VocabRow, CircleButton } from '../common';
+import * as Colors from './styles/Colors';
 
 class Vocab extends Component {
   constructor(props) {
@@ -128,7 +129,7 @@ class Vocab extends Component {
           <ProgressBarAnimated
             width={300}
             value={75}
-            backgroundColorOnComplete="#6CC644"
+            backgroundColorOnComplete={Colors.progressBarComplete}
           />
         </View>
 
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
     padding: 20,
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#ccf1f3',
+    backgroundColor: Colors.appBackground,
   },
   input: {
     width: 300,
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     marginTop: 20,
-    backgroundColor: 'rgba(92, 99,216, 1)',
+    backgroundColor: Colors.purpleButton,
     width: 250,
     height: 45,
     borderColor: 'transparent',
@@ -226,7 +227,7 @@ const styles = StyleSheet.create({
   },
   speakerIcon: {
     fontSize: 35,
-    color: '#606060'
+    color: Colors.speakerIcon
   },
   answersContainer: {
     position: 'absolute',
@@ -253,7 +254,7 @@ const styles = StyleSheet.create({
   },
   wordsListLabel: { fontSize: 17 },
   tableHeader: { height: 50 },
-  headerRow: { backgroundColor: '#BACFFF' },
+  headerRow: { backgroundColor: Colors.headerRow },
   engWordPronuntiation: { fontSize: 20 }
 });
 
