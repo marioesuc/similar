@@ -1,7 +1,7 @@
 // Component that renders screen related to the login
 
 import React, { Component } from 'react';
-import { Alert, Button, TextInput, View, Image, Text, StyleSheet } from 'react-native';
+import { Button, TextInput, View, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../../actions';
@@ -30,12 +30,6 @@ class Login extends Component {
     const { email, password } = this.props;
 
     this.props.loginUser({ email, password });
-  }
-  
-  onLogin() {
-    const { email, password } = this.state;
-
-    Alert.alert('Credentials', `${email} + ${password}`);
   }
 
   render() {
