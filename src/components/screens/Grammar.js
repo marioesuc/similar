@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, FlatList } from 'react-native';
-import ListItem from './common/ListItem';
+import { View, FlatList, StyleSheet } from 'react-native';
+import ListItem from '../common/ListItem';
 
 class Grammar extends Component {
 
@@ -30,11 +30,11 @@ class Grammar extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ccf1f3',
   }
-};
+});
 
 export default Grammar;

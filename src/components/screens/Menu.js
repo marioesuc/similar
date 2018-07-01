@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Alert, Button, View, Image } from 'react-native';
+import { Alert, Button, View, Image, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { Card } from './common';
-import { logoutUser } from '../actions';
+import { Card } from '../common';
+import { logoutUser } from '../../actions';
 
 class Menu extends Component {
   constructor(props) {
@@ -25,10 +25,10 @@ class Menu extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoContainer}>
-          <Image style={styles.logo} source={require('../../images/similar_logo.png')} />
+          <Image style={styles.logo} source={require('../../../images/similar_logo.png')} />
         </View>
         <Card>
-          <View style={{ width: '100%', padding: 10 }}>
+          <View style={styles.buttonContainer}>
             <Button
               style={styles.button}
               title='Vocabulario'
@@ -38,7 +38,7 @@ class Menu extends Component {
             />
           </View> 
 
-          <View style={{ width: '100%', padding: 10 }}>
+          <View style={styles.buttonContainer}>
             <Button
               style={styles.button}
               title='Gramática'
@@ -48,11 +48,11 @@ class Menu extends Component {
             />
           </View>  
 
-          <View style={{ width: '100%', padding: 10 }}>
+          <View style={styles.buttonContainer}>
             <Button style={styles.button} title='Acerca de' onPress={() => {}} />
           </View> 
 
-          <View style={{ width: '100%', padding: 10 }}>
+          <View style={styles.buttonContainer}>
             <Button style={styles.button} title='Cerrar sesión' onPress={this.props.logoutUser} />
           </View> 
         </Card> 
@@ -62,7 +62,7 @@ class Menu extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -82,8 +82,9 @@ const styles = {
   button: {
     width: 300,
     alignItems: 'center'
-  }
-};
+  },
+  buttonContainer: { width: '100%', padding: 10 }
+});
 
 
 export default connect(null, { 

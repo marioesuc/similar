@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { Button } from 'react-native-elements';
@@ -7,7 +7,7 @@ import FlipCard from 'react-native-flip-card';
 import Tts from 'react-native-tts';
 import Icon from 'react-native-fa-icons';
 
-import { Card, VocabRow, CircleButton } from './common';
+import { Card, VocabRow, CircleButton } from '../common';
 
 class Vocab extends Component {
   constructor(props) {
@@ -24,7 +24,6 @@ class Vocab extends Component {
   }
 
   textToSpeech() {
-    console.log('Entra');
     Tts.speak(this.state.engWord);
   }
 
@@ -35,27 +34,32 @@ class Vocab extends Component {
 
       <Modal isVisible={this.state.modalVisible}>
       <View
-        style={{ alignItems: 'center', marginTop: 40, flex: 1 }} >
+        style={styles.flipCardContainer} >
         <FlipCard 
           perspective={1000}
-          style={{ borderWidth: 0 }} 
+          style={styles.flipCard} 
           clickable={false}
           flipHorizontal={true}
           flipVertical={false}
           flip={this.state.flipCard}
         >
           {/* Face Side */}
-              <Card style={{ height: 380 }}>
-                <View style={{ position: 'absolute', top: 30, alignItems: 'center' }}>
-                  <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ fontSize: 35 }}>{this.state.engWord}</Text>
-                    <TouchableOpacity style={{ position: 'relative', top: 8, left: 10 }} onPress={this.textToSpeech.bind(this)}><Icon name='volume-up' style={{ fontSize: 35, color: '#606060' }} /></TouchableOpacity>
+              <Card style={styles.card}>
+                <View style={styles.cardHead}>
+                  <View style={styles.engRow}>
+                    <Text style={styles.engWord}>{this.state.engWord}</Text>
+                    <TouchableOpacity
+                      style={styles.speakerContainer}
+                      onPress={this.textToSpeech.bind(this)}
+                    >
+                        <Icon name='volume-up' style={styles.speakerIcon} />
+                    </TouchableOpacity>
                   </View>
-                  <Text style={{ fontSize: 20 }}>Pronuntiation</Text>
+                  <Text style={styles.engWordPronuntiation}>Pronuntiation</Text>
                 </View>
-                <View style={{ position: 'absolute', bottom: 100, alignItems: 'center' }}>
+                <View style={styles.answersContainer}>
                 <Text>Elige una respuesta:</Text>
-                  <View style={{ flexDirection: 'row' }}>
+                  <View style={styles.answersRow}>
                     <Button
                       title='Option 1'
                       color='blue'
@@ -69,7 +73,7 @@ class Vocab extends Component {
                       onPress={() => this.setState({ modalVisible: true })}
                     />
                   </View>
-                  <View style={{ flexDirection: 'row' }}>
+                  <View style={styles.answersRow}>
                     <Button
                       title='Option 1'
                       color='blue'
@@ -89,12 +93,12 @@ class Vocab extends Component {
 
           {/* Back Side */}
 
-              <Card style={{ height: 380 }}>
-                <View style={{ position: 'absolute', top: 100, alignItems: 'center' }}>
-                  <Text style={{ fontSize: 20 }}>La respuesta correcta es:</Text>
-                  <Text style={{ fontSize: 35 }}>{this.state.spWord}</Text>
+              <Card style={styles.card}>
+                <View style={styles.rightAnswerContainer}>
+                  <Text style={styles.rightAnswerSubtext}>La respuesta correcta es:</Text>
+                  <Text style={styles.spWord}>{this.state.spWord}</Text>
                 </View>
-                <View style={{ flexDirection: 'row', position: 'absolute', bottom: 40 }}>
+                <View style={styles.answerButtonsContainer}>
                   <Button
                     title='Cerrar'
                     color='blue'
@@ -115,7 +119,7 @@ class Vocab extends Component {
       </Modal>
 
         <View>
-          <Text style={{ fontSize: 18 }}>
+          <Text style={styles.progressLabel}>
             Tu progreso:
           </Text>
           <ProgressBarAnimated
@@ -124,13 +128,13 @@ class Vocab extends Component {
             backgroundColorOnComplete="#6CC644"
           />
         </View>
-        <View style={{ marginTop: 20, alignItems: 'center' }}>
-          <Text style={{ fontSize: 17 }}>
+        <View style={styles.wordsListContainer}>
+          <Text style={styles.wordsListLabel}>
             Listado de palabras:
           </Text>
           <Card>
-            <View style={{ height: 50 }}>
-              <VocabRow style={{ backgroundColor: '#BACFFF' }} >{{ col1: 'Inglés', col2: 'Español', col3: 'Memorizada' }}</VocabRow>
+            <View style={styles.tableHeader}>
+              <VocabRow style={styles.headerRow} >{{ col1: 'Inglés', col2: 'Español', col3: 'Memorizada' }}</VocabRow>
             </View>
             <FlatList
               data={[{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' }]}
@@ -153,7 +157,7 @@ class Vocab extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
@@ -190,7 +194,56 @@ const styles = {
     borderColor: 'blue',
     borderWidth: 1,
     borderRadius: 5
-  }
-};
+  },
+  flipCardContainer: {
+    alignItems: 'center',
+    marginTop: 40,
+    flex: 1 },
+  flipCard: { borderWidth: 0 },
+  card: { height: 380 },
+  cardHead: {
+    position: 'absolute',
+    top: 30,
+    alignItems: 'center'
+  },
+  engRow: { flexDirection: 'row' },
+  engWord: { fontSize: 35 },
+  speakerContainer: {
+    position: 'relative',
+    top: 8,
+    left: 10
+  },
+  speakerIcon: {
+    fontSize: 35,
+    color: '#606060'
+  },
+  answersContainer: {
+    position: 'absolute',
+    bottom: 100,
+    alignItems: 'center'
+  },
+  answersRow: { flexDirection: 'row' },
+  rightAnswerContainer: {
+    position: 'absolute',
+    top: 100,
+    alignItems: 'center'
+  },
+  rightAnswerSubtext: { fontSize: 20 },
+  spWord: { fontSize: 35 },
+  answerButtonsContainer: {
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 40
+  },
+  progressLabel: { fontSize: 18 },
+  wordsListContainer: {
+    marginTop: 20,
+    alignItems: 'center'
+  },
+  wordsListLabel: { fontSize: 17 },
+  tableHeader: { height: 50 },
+  headerRow: { backgroundColor: '#BACFFF' },
+  engWordPronuntiation: { fontSize: 20 }
+});
 
 export default Vocab;

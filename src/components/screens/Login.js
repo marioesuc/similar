@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Alert, Button, TextInput, View, Image, Text } from 'react-native';
+import { Alert, Button, TextInput, View, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser } from '../actions';
+import { emailChanged, passwordChanged, loginUser } from '../../actions';
 
 class Login extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class Login extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoContainer}>
-          <Image style={styles.logo} source={require('../../images/similar_logo.png')} />
+          <Image style={styles.logo} source={require('../../../images/similar_logo.png')} />
         </View>
         <TextInput
           value={this.props.email}
@@ -55,14 +55,14 @@ class Login extends Component {
           style={styles.input}
         />
         
-        <View style={{ flexDirection: 'row', width: 300 }}>
-            <View style={{ flex: 1, marginRight: 10 }}>
+        <View style={styles.buttonsContainer}>
+            <View style={styles.buttonsSeparation}>
                 <Button
                   title='Entrar'
                   onPress={this.onButtonPress.bind(this)}
                 />
             </View>
-            <View style={{ flex: 1 }} >
+            <View style={styles.registerButton} >
                 <Button
                   title='Registro'
                   onPress={() => {
@@ -79,7 +79,7 @@ class Login extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -104,8 +104,17 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
-  }
-};
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    width: 300
+  },
+  buttonsSeparation: {
+    flex: 1,
+    marginRight: 10
+  },
+  registerButton: { flex: 1 }
+});
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading } = auth;

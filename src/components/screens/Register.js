@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Button, TextInput, View, Image } from 'react-native';
+import { Alert, Button, TextInput, View, Image, StyleSheet } from 'react-native';
 
 export default class Register extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class Register extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoContainer}>
-          <Image style={styles.logo} source={require('../../images/similar_logo.png')} />
+          <Image style={styles.logo} source={require('../../../images/similar_logo.png')} />
         </View>
         <TextInput
           value={this.state.email}
@@ -53,7 +53,7 @@ export default class Register extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -73,4 +73,4 @@ const styles = {
   button: {
     alignItems: 'center'
   }
-};
+});
