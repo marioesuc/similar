@@ -8,14 +8,6 @@ import { emailChanged, passwordChanged, loginUser } from '../../actions';
 import * as Colors from './styles/Colors';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      email: '',
-      password: '',
-    };
-  }
 
   onEmailChange(text) {
     //emailChanged es la función Action Creator que hemos importado arriba

@@ -1,25 +1,32 @@
 // Component that renders screen related to the register form
 
 import React, { Component } from 'react';
-import { Alert, Button, TextInput, View, Image, StyleSheet } from 'react-native';
+import { Button, TextInput, View, Image, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { emailChanged, passwordChanged, confirmPasswordChanged, registerUser } from '../../actions';
 import * as Colors from './styles/Colors';
 
-export default class Register extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      email: '',
-      password: '',
-      repeatedPassword: ''
-    };
-  }
-  
-  onLogin() {
-    const { email, password } = this.state;
+class Register extends Component {
 
-    Alert.alert('Credentials', `${email} + ${password}`);
+  onEmailChange(text) {
+    //emailChanged es la función Action Creator que hemos importado arriba
+    this.props.emailChanged(text);
   }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  }
+
+  onPasswordConfirmChange(text) {
+    this.props.confirmPasswordChanged(text);
+  }
+
+  onButtonPress() {
+    const { email, password, confirmPassword } = this.props;
+
+    this.props.registerUser({ email, password, confirmPassword });
+  }
+
 
   render() {
     return (
@@ -28,29 +35,31 @@ export default class Register extends Component {
           <Image style={styles.logo} source={require('../../../images/similar_logo.png')} />
         </View>
         <TextInput
-          value={this.state.email}
-          onChangeText={(email) => this.setState({ email })}
+          value={this.props.email}
+          onChangeText={this.onEmailChange.bind(this)}
           placeholder={'E-mail'}
           style={styles.input}
         />
         <TextInput
-          value={this.state.password}
-          onChangeText={(password) => this.setState({ password })}
-          placeholder={'Contraseña'}
+          value={this.props.password}
+          onChangeText={this.onPasswordChange.bind(this)}
+          placeholder={'Introduce una contraseña'}
           secureTextEntry
           style={styles.input}
         />
         <TextInput
-          value={this.state.repeatedPassword}
-          onChangeText={(repeatedPassword) => this.setState({ repeatedPassword })}
-          placeholder={'Repite contraseña'}
+          value={this.props.confirmPassword}
+          onChangeText={this.onPasswordConfirmChange.bind(this)}
+          placeholder={'Repite la contraseña'}
           secureTextEntry
           style={styles.input}
         />
 
-        <Button style={styles.button} title='Registrarse' onPress={() => {}} />
+        <Button style={styles.button} title='Registrarse' onPress={this.onButtonPress.bind(this)} />
            
-
+        <Text style={styles.errorTextStyle}>
+          {this.props.error}
+        </Text>
       </View>
     );
   }
@@ -75,5 +84,21 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center'
+  },
+  errorTextStyle: {
+    marginTop: 20,
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
   }
 });
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password, confirmPassword, error } = auth;
+  return { email, password, confirmPassword, error };
+};
+
+
+export default connect(mapStateToProps, { 
+  emailChanged, passwordChanged, confirmPasswordChanged, registerUser
+})(Register);
