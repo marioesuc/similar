@@ -1,3 +1,6 @@
+// This screen is NOT being used.
+// It's just an approach to a new redesign of the actual Login. Ignore it for now
+
 import React, { Component } from 'react';
 import {
   AppRegistry,

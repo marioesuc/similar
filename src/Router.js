@@ -2,12 +2,12 @@
 // along with the navigation between them
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
-import Login from './components/screens/Login';
-import Register from './components/screens/Register';
-import Menu from './components/screens/Menu';
-import Vocab from './components/screens/Vocab';
-import Grammar from './components/screens/Grammar';
-import VideoViewer from './components/screens/VideoViewer';
+import Login from './components/screens/LoginScreen';
+import Register from './components/screens/RegisterScreen';
+import Menu from './components/screens/MenuScreen';
+import Vocab from './components/screens/VocabScreen';
+import Grammar from './components/screens/GrammarScreen';
+import VideoViewer from './components/screens/VideoViewerScreen';
 
 const RouterComponent = () => {
 	return (

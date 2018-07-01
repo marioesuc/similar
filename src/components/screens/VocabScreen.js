@@ -37,7 +37,8 @@ class Vocab extends Component {
       {/* Modal that is going to contain the flipping card */}
       <Modal isVisible={this.state.modalVisible}>
       <View
-        style={styles.flipCardContainer} >
+        style={styles.flipCardContainer}
+      >
         <FlipCard 
           perspective={1000}
           style={styles.flipCard} 
