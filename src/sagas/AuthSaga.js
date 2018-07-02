@@ -11,6 +11,7 @@ import {
   LOGOUT_USER_SUCCESS
 } from '../actions/types';
 
+// Function that manages the logic of the user login
 function* loginUser(action) {
   try {
     const auth = firebase.auth();
@@ -28,7 +29,7 @@ function* loginUser(action) {
   }
 }
 
-
+// Function that manages the logic of the user logout
 function* logoutUser(action) {
 
   try {
@@ -47,7 +48,7 @@ function* logoutUser(action) {
     );
 
     yield put({ type: LOGOUT_USER_SUCCESS });
-	Actions.login();
+    Actions.login();
   } catch (error) {
     console.log(error.message);
   }

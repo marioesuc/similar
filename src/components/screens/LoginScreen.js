@@ -4,26 +4,18 @@ import React, { Component } from 'react';
 import { Button, TextInput, View, Image, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser } from '../../actions';
+import { loginEmailChanged, loginPasswordChanged, loginUser } from '../../actions';
 import * as Colors from './styles/Colors';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      email: '',
-      password: '',
-    };
-  }
 
   onEmailChange(text) {
-    //emailChanged es la función Action Creator que hemos importado arriba
-    this.props.emailChanged(text);
+    //loginEmailChanged es la función Action Creator que hemos importado arriba
+    this.props.loginEmailChanged(text);
   }
 
   onPasswordChange(text) {
-    this.props.passwordChanged(text);
+    this.props.loginPasswordChanged(text);
   }
 
   onButtonPress() {
@@ -120,5 +112,5 @@ const mapStateToProps = ({ auth }) => {
 
 
 export default connect(mapStateToProps, { 
-  emailChanged, passwordChanged, loginUser 
+  loginEmailChanged, loginPasswordChanged, loginUser 
 })(Login);
