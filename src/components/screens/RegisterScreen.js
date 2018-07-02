@@ -3,22 +3,27 @@
 import React, { Component } from 'react';
 import { Button, TextInput, View, Image, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, confirmPasswordChanged, registerUser } from '../../actions';
+import {
+  registerEmailChanged,
+  registerPasswordChanged,
+  registerConfirmPasswordChanged,
+  registerUser
+} from '../../actions';
 import * as Colors from './styles/Colors';
 
 class Register extends Component {
 
   onEmailChange(text) {
-    //emailChanged es la función Action Creator que hemos importado arriba
-    this.props.emailChanged(text);
+    //registerEmailChanged es la función Action Creator que hemos importado arriba
+    this.props.registerEmailChanged(text);
   }
 
   onPasswordChange(text) {
-    this.props.passwordChanged(text);
+    this.props.registerPasswordChanged(text);
   }
 
   onPasswordConfirmChange(text) {
-    this.props.confirmPasswordChanged(text);
+    this.props.registerConfirmPasswordChanged(text);
   }
 
   onButtonPress() {
@@ -93,12 +98,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ auth }) => {
-  const { email, password, confirmPassword, error } = auth;
+const mapStateToProps = ({ register }) => {
+  const { email, password, confirmPassword, error } = register;
   return { email, password, confirmPassword, error };
 };
 
 
 export default connect(mapStateToProps, { 
-  emailChanged, passwordChanged, confirmPasswordChanged, registerUser
+  registerEmailChanged, registerPasswordChanged, registerConfirmPasswordChanged, registerUser
 })(Register);

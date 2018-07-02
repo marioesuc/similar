@@ -1,31 +1,22 @@
 // These are the action creators associated to the authentication
 
 import { 
-	EMAIL_CHANGED,
-	PASSWORD_CHANGED,
+	LOGIN_EMAIL_CHANGED,
+	LOGIN_PASSWORD_CHANGED,
 	LOGIN_USER,
-	LOGOUT_USER,
-	CONFIRM_PASSWORD_CHANGED,
-	REGISTER_USER
+	LOGOUT_USER
 } from './types';
 
-export const emailChanged = (text) => {
+export const loginEmailChanged = (text) => {
 	return {
-		type: EMAIL_CHANGED,
+		type: LOGIN_EMAIL_CHANGED,
 		payload: text
 	};
 };
 
-export const passwordChanged = (text) => {
+export const loginPasswordChanged = (text) => {
 	return {
-		type: PASSWORD_CHANGED,
-		payload: text
-	};
-};
-
-export const confirmPasswordChanged = (text) => {
-	return {
-		type: CONFIRM_PASSWORD_CHANGED,
+		type: LOGIN_PASSWORD_CHANGED,
 		payload: text
 	};
 };
@@ -42,11 +33,4 @@ export const logoutUser = () => {
 	return {
 		type: LOGOUT_USER
 	};	
-};
-
-export const registerUser = ({ email, password, confirmPassword }) => {
-	return {
-		type: REGISTER_USER,
-		payload: { email, password, confirmPassword }
-	};
 };
