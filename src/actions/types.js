@@ -27,3 +27,4 @@ export const LOAD_VOCAB = 'load_vocab';
 export const LOAD_VOCAB_SUCCESS = 'load_vocab_success';
 export const UPDATE_LEARNED_VOCAB_WORDS = 'update_learned_vocab_words';
 export const UPDATE_LEARNED_VOCAB_WORDS_SUCCESS = 'update_learned_vocab_words_success';
+export const DELETE_LEARNED_VOCAB_WORDS = 'delete_learned_vocab_words';

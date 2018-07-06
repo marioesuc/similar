@@ -24,8 +24,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 	// Every single action is going to pass over this point, so a console.log
 	// here is going to help to debug any problem related to the actions
-	console.log(state);
-	console.log(action);
 
 	// Depneding on the action's type, we are going to update the state in a different manner
 	switch (action.type) {

@@ -1,7 +1,8 @@
 // All reducers associated to Authentication
 
 import { 
-	LOAD_VOCAB_SUCCESS
+	LOAD_VOCAB_SUCCESS,
+	UPDATE_LEARNED_VOCAB_WORDS_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = { 
@@ -13,9 +14,8 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 	// Every single action is going to pass over this point, so a console.log
 	// here is going to help to debug any problem related to the actions
-	console.log(action);
 
-	// Depneding on the action's type, we are going to update the state in a different manner
+	// Depending on the action's type, we are going to update the state in a different manner
 	switch (action.type) {
 
 
@@ -27,6 +27,8 @@ export default (state = INITIAL_STATE, action) => {
 				wordsList: action.payload.wordsList,
 				currentCard: action.payload.currentCard
 			};
+		case UPDATE_LEARNED_VOCAB_WORDS_SUCCESS:
+			return { ...state };
 
 		default:
 			return state;

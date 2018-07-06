@@ -1,7 +1,7 @@
 // Component that renders screen related to the vocabulary and flashcards' exercises
 
 import React, { Component } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Alert, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { Button } from 'react-native-elements';
@@ -11,7 +11,7 @@ import Icon from 'react-native-fa-icons';
 import { connect } from 'react-redux';
 
 import { Card, VocabRow, CircleButton } from '../common';
-import { loadVocabData, updateLearnedVocabWords } from '../../actions';
+import { loadVocabData, updateLearnedVocabWords, deleteLearnedVocabWords } from '../../actions';
 import * as Colors from './styles/Colors';
 
 class Vocab extends Component {
@@ -26,6 +26,10 @@ class Vocab extends Component {
       optCorrect: undefined,
       optChosen: undefined
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.checkCompleteList(nextProps); 
   }
 
   onReply(chosen, correct) {
@@ -68,7 +72,29 @@ class Vocab extends Component {
     Tts.speak(this.props.currentCard.eng);
   }
 
+  checkCompleteList(props) {
+    if (Object.keys(props.currentCard).length === 0) {
+      Alert.alert('Listado completado', '¡Enhorabuena! Has respondido correctamente a todas las tarjetas y no quedan más para mostrar.\n\n¿Te gustaría resetear el listado para volver a empezar?',
+          [
+            {
+              text: 'No'
+            },
+            {
+              text: 'Sí',
+              onPress: () => {
+                this.props.deleteLearnedVocabWords();
+                this.props.loadVocabData();
+              }
+            }
+          ],
+          { cancelable: true }
+        );
+      }
+  }
+
   render() {
+    
+
     return (
       <View style={styles.container}>
 
@@ -89,7 +115,6 @@ class Vocab extends Component {
               <Card style={styles.card}>
                 <View style={styles.cardHead}>
                   <View style={styles.engRow}>
-                  {console.log(Object.keys(this.props.currentCard))}
                     <Text style={styles.engWord}>{this.props.currentCard.eng}</Text>
                     <TouchableOpacity
                       style={styles.speakerContainer}
@@ -102,7 +127,6 @@ class Vocab extends Component {
                 </View>
                 <View style={styles.answersContainer}>
                 <Text>Elige una respuesta:</Text>
-                {console.log(this.props.currentCard.opt1)}
                   <View style={styles.answersRow}>
                     <Button
                       title={this.props.currentCard.opt1}
@@ -195,6 +219,7 @@ class Vocab extends Component {
                         );
                       }
                       this.props.loadVocabData();
+                      
                       this.setState({
                         flipCard: false,
                         optCorrect: undefined,
@@ -215,6 +240,7 @@ class Vocab extends Component {
             Tu progreso:
           </Text>
           <ProgressBarAnimated
+            backgroundColor={Colors.progressBar}
             width={300}
             value={this.props.progress}
             backgroundColorOnComplete={Colors.progressBarComplete}
@@ -243,9 +269,10 @@ class Vocab extends Component {
             />
           </Card>
           <Button
-            title='FLASHCARDS'
+            title='Flashcards'
             buttonStyle={styles.buttonStyle}
-            onPress={() => this.setState({ modalVisible: true })}
+            onPress={() => this.setState({ modalVisible: true })
+          }
           />
         </View>
 
@@ -355,4 +382,4 @@ const mapStateToProps = ({ vocab }) => {
 };
 
 
-export default connect(mapStateToProps, { loadVocabData, updateLearnedVocabWords })(Vocab);
+export default connect(mapStateToProps, { loadVocabData, updateLearnedVocabWords, deleteLearnedVocabWords })(Vocab);

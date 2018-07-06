@@ -2,7 +2,8 @@
 
 import { 
 	LOAD_VOCAB,
-	UPDATE_LEARNED_VOCAB_WORDS
+	UPDATE_LEARNED_VOCAB_WORDS,
+	DELETE_LEARNED_VOCAB_WORDS
 } from './types';
 
 export const loadVocabData = () => {
@@ -12,11 +13,14 @@ export const loadVocabData = () => {
 };
 
 export const updateLearnedVocabWords = ({ eng, success }) => {
-	console.log('Parámetros');
-	console.log(eng);
-	console.log(success);
 	return {
 		type: UPDATE_LEARNED_VOCAB_WORDS,
 		payload: { eng, success }
+	};
+};
+
+export const deleteLearnedVocabWords = () => {
+	return {
+		type: DELETE_LEARNED_VOCAB_WORDS
 	};
 };

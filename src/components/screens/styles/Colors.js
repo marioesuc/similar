@@ -5,3 +5,4 @@ export const progressBarComplete = '#6CC644';
 export const purpleButton = '#5C63D8';
 export const speakerIcon = '#606060';
 export const headerRow = '#BACFFF';
+export const progressBar = '#148CF0';
