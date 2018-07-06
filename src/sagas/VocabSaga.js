@@ -4,7 +4,8 @@ import firebase from 'firebase';
 import { put, takeLatest, call } from 'redux-saga/effects';
 import {
   LOAD_VOCAB,
-  LOAD_VOCAB_SUCCESS
+  LOAD_VOCAB_SUCCESS,
+  UPDATE_LEARNED_VOCAB_WORDS
 } from '../actions/types';
 
 function shuffle(a) {
@@ -25,6 +26,7 @@ function* fetchData(path) {
 function* loadVocabData() {
   let vocabSuccess = undefined;
   let vocabDataPerUser = {};
+  let learnedVocabData = {};
   let unlearnedVocabData = {};
   let currentCard = {};
   let wordsList = [];
@@ -36,15 +38,22 @@ function* loadVocabData() {
 
     const vocabData = yield call(fetchData, '/vocab');
 
-    const usersData = yield call(fetchData, '/users');
+    learnedVocabData = yield call(fetchData, `/users/${currentUser.uid}/learnedVocabWords`);
 
-    if (currentUser in Object.keys(usersData)) {
-      console.log('Sí está');
-    } else {
-      Object.keys(vocabData).forEach(key => {
+    console.log(learnedVocabData);
+
+    Object.keys(vocabData).forEach(key => {
+      if (learnedVocabData) {
+        if (Object.keys(learnedVocabData).includes(key)) {
+          vocabDataPerUser[key] = { ...vocabData[key], success: learnedVocabData[key].success };
+        } else {
+          vocabDataPerUser[key] = { ...vocabData[key], success: undefined };
+        }
+      } else {
         vocabDataPerUser[key] = { ...vocabData[key], success: undefined };
-      });
-    }
+      }
+    });
+    
 
     // We construct the object for unlearned words
     Object.keys(vocabData).forEach(key => {
@@ -117,9 +126,39 @@ function* loadVocabData() {
   }
 }
 
+function* updateData(object) {
+  const { currentUser } = firebase.auth();
+  const ref = firebase.database().ref(`/users/${currentUser.uid}/learnedVocabWords`);
+  const data = yield call([ref, ref.once], 'value');
+
+  // If it doesn't exist
+  if (data === null) {
+    yield call([ref, ref.push], object);
+  } else { //If it does exist
+    yield call([ref, ref.update], object);
+  }
+}
+
+function* updateLearnedVocabWords(action) {
+  const eng = action.payload.eng;
+
+  const newData = {};
+
+  newData[eng] = {
+      success: action.payload.success
+    };
+
+  try {
+    yield call(updateData, newData);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 
 function* vocabSaga() {
   yield takeLatest(LOAD_VOCAB, loadVocabData);
+  yield takeLatest(UPDATE_LEARNED_VOCAB_WORDS, updateLearnedVocabWords);
 }
 
 export default vocabSaga;
