@@ -16,27 +16,75 @@ import * as Colors from './styles/Colors';
 
 class Vocab extends Component {
 
-  constructor() {
-    super();
-    this.progress = 40;
-  }
 
   componentWillMount() {
     this.props.loadVocabData();
 
     this.setState({
       modalVisible: false,
-      flipCard: false
+      flipCard: false,
+      opt1Correct: undefined,
+      opt2Correct: undefined,
+      opt3Correct: undefined,
+      opt4Correct: undefined
     });
   }
 
   onReply(chosen, correct) {
     console.log(chosen, correct);
     if (chosen === correct) {
-      console.log('Correcta');
+      switch (chosen) {
+        case this.props.currentCard.opt1:
+          this.setState({ opt1Correct: true });
+          break;
+        case this.props.currentCard.opt2:
+          this.setState({ opt2Correct: true });
+          break;
+        case this.props.currentCard.opt3:
+          this.setState({ opt3Correct: true });
+          break;
+        case this.props.currentCard.opt4:
+          this.setState({ opt4Correct: true });
+          break;
+        default:
+      }
     } else {
-      console.log('Incorrecta');
+      switch (correct) {
+        case this.props.currentCard.opt1:
+          this.setState({ opt1Correct: true });
+          break;
+        case this.props.currentCard.opt2:
+          this.setState({ opt2Correct: true });
+          break;
+        case this.props.currentCard.opt3:
+          this.setState({ opt3Correct: true });
+          break;
+        case this.props.currentCard.opt4:
+          this.setState({ opt4Correct: true });
+          break;
+        default:
+      }
+
+
+      switch (chosen) {
+        case this.props.currentCard.opt1:
+          this.setState({ opt1Correct: false });
+          break;
+        case this.props.currentCard.opt2:
+          this.setState({ opt2Correct: false });
+          break;
+        case this.props.currentCard.opt3:
+          this.setState({ opt3Correct: false });
+          break;
+        case this.props.currentCard.opt4:
+          this.setState({ opt4Correct: false });
+          break;
+        default:
+      }
     }
+    this.setState({
+      opt1: { backgroundColor: 'blue' }
+    });
   }
 
   textToSpeech() {
@@ -82,13 +130,21 @@ class Vocab extends Component {
                     <Button
                       title={this.props.currentCard.opt1}
                       color='blue'
-                      buttonStyle={[styles.optionButtonStyle]}
+                      buttonStyle={[
+                        styles.optionButtonStyle,
+                        this.state.opt1Correct ? styles.optSuccess : null,
+                        this.state.opt1Correct === false ? styles.optFail : null
+                        ]}
                       onPress={this.onReply.bind(this, this.props.currentCard.opt1, this.props.currentCard.sp)}
                     />
                     <Button
                       title={this.props.currentCard.opt2}
                       color='blue'
-                      buttonStyle={styles.optionButtonStyle}
+                      buttonStyle={[
+                        styles.optionButtonStyle,
+                        this.state.opt2Correct ? styles.optSuccess : null,
+                        this.state.opt2Correct === false ? styles.optFail : null
+                        ]}
                       onPress={this.onReply.bind(this, this.props.currentCard.opt2, this.props.currentCard.sp)}
                     />
                   </View>
@@ -96,13 +152,21 @@ class Vocab extends Component {
                     <Button
                       title={this.props.currentCard.opt3}
                       color='blue'
-                      buttonStyle={styles.optionButtonStyle}
+                      buttonStyle={[
+                        styles.optionButtonStyle,
+                        this.state.opt3Correct ? styles.optSuccess : null,
+                        this.state.opt3Correct === false ? styles.optFail : null
+                        ]}
                       onPress={this.onReply.bind(this, this.props.currentCard.opt3, this.props.currentCard.sp)}
                     />
                     <Button
                       title={this.props.currentCard.opt4}
                       color='blue'
-                      buttonStyle={styles.optionButtonStyle}
+                      buttonStyle={[
+                        styles.optionButtonStyle,
+                        this.state.opt4Correct ? styles.optSuccess : null,
+                        this.state.opt4Correct === false ? styles.optFail : null
+                        ]}
                       onPress={this.onReply.bind(this, this.props.currentCard.opt4, this.props.currentCard.sp)}
                     />
                   </View>
@@ -122,13 +186,32 @@ class Vocab extends Component {
                     title='Cerrar'
                     color='blue'
                     buttonStyle={styles.optionButtonStyle}
-                    onPress={() => this.setState({ modalVisible: false })}
+                    onPress={() => {
+                      this.props.loadVocabData();
+                      this.setState({
+                        modalVisible: false,
+                        flipCard: false,
+                        opt1Correct: undefined,
+                        opt2Correct: undefined,
+                        opt3Correct: undefined,
+                        opt4Correct: undefined
+                      });
+                    }}
                   />
                   <Button
                     title='Siguiente'
                     color='blue'
                     buttonStyle={styles.optionButtonStyle}
-                    onPress={() => this.setState({ flipCard: false })}
+                    onPress={() => {
+                      this.props.loadVocabData();
+                      this.setState({
+                        flipCard: false,
+                        opt1Correct: undefined,
+                        opt2Correct: undefined,
+                        opt3Correct: undefined,
+                        opt4Correct: undefined
+                      });
+                    }}
                   />
                 </View>
               </Card>
@@ -271,7 +354,9 @@ const styles = StyleSheet.create({
   wordsListLabel: { fontSize: 17 },
   tableHeader: { height: 50 },
   headerRow: { backgroundColor: Colors.headerRow },
-  engWordPronuntiation: { fontSize: 20 }
+  engWordPronuntiation: { fontSize: 20 },
+  optSuccess: { backgroundColor: 'lightgreen' },
+  optFail: { backgroundColor: 'red' }
 });
 
 

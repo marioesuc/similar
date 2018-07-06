@@ -57,13 +57,28 @@ function* loadVocabData() {
     const randomPos = Math.floor(Math.random() * Object.keys(unlearnedVocabData).length);
     const randomObject = Object.keys(unlearnedVocabData)[randomPos];
 
-    let answers = [
+    /*let answers = [
       vocabData[Object.keys(vocabData)[Math.floor(Math.random() * Object.keys(vocabData).length)]].sp,
       vocabData[Object.keys(vocabData)[Math.floor(Math.random() * Object.keys(vocabData).length)]].sp,
       vocabData[Object.keys(vocabData)[Math.floor(Math.random() * Object.keys(vocabData).length)]].sp,
       unlearnedVocabData[randomObject].sp
-    ];
+    ];*/
 
+    let answers = [];
+
+    answers.push(unlearnedVocabData[randomObject].sp);
+
+    let randomAnswer;
+
+    // Insert 3 random answers into the array
+    for (let i = 0; i < 3; i++) {
+      do {
+        randomAnswer = vocabData[Object.keys(vocabData)[Math.floor(Math.random() * Object.keys(vocabData).length)]].sp;
+      } while (answers.includes(randomAnswer));
+
+      answers.push(randomAnswer);
+    }
+    
     answers = shuffle(answers);
 
     currentCard = {
