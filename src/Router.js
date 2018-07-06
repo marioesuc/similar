@@ -18,8 +18,8 @@ const RouterComponent = () => {
 					<Scene key="register" component={Register} title="Registro" />
 				</Scene>
 				<Scene key="main" >
-					<Scene key="menu" component={Menu} title="Principal" hideNavBar initial />
-					<Scene key="vocab" component={Vocab} title="Vocabulario" />
+					<Scene key="menu" component={Menu} title="Principal" hideNavBar  />
+					<Scene key="vocab" component={Vocab} title="Vocabulario" initial />
 					<Scene key="grammar" component={Grammar} title="Gramática" />
 					<Scene key="videoViewer" component={VideoViewer} title="Vídeo" />
 				</Scene>

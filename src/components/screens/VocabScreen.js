@@ -8,26 +8,39 @@ import { Button } from 'react-native-elements';
 import FlipCard from 'react-native-flip-card';
 import Tts from 'react-native-tts';
 import Icon from 'react-native-fa-icons';
+import { connect } from 'react-redux';
 
 import { Card, VocabRow, CircleButton } from '../common';
+import { loadVocabData } from '../../actions';
 import * as Colors from './styles/Colors';
 
 class Vocab extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      username: '',
-      password: '',
+
+  constructor() {
+    super();
+    this.progress = 40;
+  }
+
+  componentWillMount() {
+    this.props.loadVocabData();
+
+    this.setState({
       modalVisible: false,
-      flipCard: false,
-      engWord: 'Abandon',
-      spWord: 'Abandonar'
-    };
+      flipCard: false
+    });
+  }
+
+  onReply(chosen, correct) {
+    console.log(chosen, correct);
+    if (chosen === correct) {
+      console.log('Correcta');
+    } else {
+      console.log('Incorrecta');
+    }
   }
 
   textToSpeech() {
-    Tts.speak(this.state.engWord);
+    Tts.speak(this.props.currentCard.eng);
   }
 
   render() {
@@ -51,7 +64,8 @@ class Vocab extends Component {
               <Card style={styles.card}>
                 <View style={styles.cardHead}>
                   <View style={styles.engRow}>
-                    <Text style={styles.engWord}>{this.state.engWord}</Text>
+                  {console.log(Object.keys(this.props.currentCard))}
+                    <Text style={styles.engWord}>{this.props.currentCard.eng}</Text>
                     <TouchableOpacity
                       style={styles.speakerContainer}
                       onPress={this.textToSpeech.bind(this)}
@@ -59,36 +73,37 @@ class Vocab extends Component {
                         <Icon name='volume-up' style={styles.speakerIcon} />
                     </TouchableOpacity>
                   </View>
-                  <Text style={styles.engWordPronuntiation}>Pronuntiation</Text>
+                  <Text style={styles.engWordPronuntiation}>{this.props.currentCard.pron}</Text>
                 </View>
                 <View style={styles.answersContainer}>
                 <Text>Elige una respuesta:</Text>
+                {console.log(this.props.currentCard.opt1)}
                   <View style={styles.answersRow}>
                     <Button
-                      title='Option 1'
+                      title={this.props.currentCard.opt1}
                       color='blue'
-                      buttonStyle={styles.optionButtonStyle}
-                      onPress={() => this.setState({ modalVisible: true })}
+                      buttonStyle={[styles.optionButtonStyle]}
+                      onPress={this.onReply.bind(this, this.props.currentCard.opt1, this.props.currentCard.sp)}
                     />
                     <Button
-                      title='Option 2'
+                      title={this.props.currentCard.opt2}
                       color='blue'
                       buttonStyle={styles.optionButtonStyle}
-                      onPress={() => this.setState({ modalVisible: true })}
+                      onPress={this.onReply.bind(this, this.props.currentCard.opt2, this.props.currentCard.sp)}
                     />
                   </View>
                   <View style={styles.answersRow}>
                     <Button
-                      title='Option 1'
+                      title={this.props.currentCard.opt3}
                       color='blue'
                       buttonStyle={styles.optionButtonStyle}
-                      onPress={() => this.setState({ modalVisible: true })}
+                      onPress={this.onReply.bind(this, this.props.currentCard.opt3, this.props.currentCard.sp)}
                     />
                     <Button
-                      title='Option 2'
+                      title={this.props.currentCard.opt4}
                       color='blue'
                       buttonStyle={styles.optionButtonStyle}
-                      onPress={() => this.setState({ modalVisible: true })}
+                      onPress={this.onReply.bind(this, this.props.currentCard.opt4, this.props.currentCard.sp)}
                     />
                   </View>
                 </View>
@@ -100,7 +115,7 @@ class Vocab extends Component {
               <Card style={styles.card}>
                 <View style={styles.rightAnswerContainer}>
                   <Text style={styles.rightAnswerSubtext}>La respuesta correcta es:</Text>
-                  <Text style={styles.spWord}>{this.state.spWord}</Text>
+                  <Text style={styles.spWord}>{this.props.currentCard.sp}</Text>
                 </View>
                 <View style={styles.answerButtonsContainer}>
                   <Button
@@ -129,7 +144,7 @@ class Vocab extends Component {
           </Text>
           <ProgressBarAnimated
             width={300}
-            value={75}
+            value={this.props.progress}
             backgroundColorOnComplete={Colors.progressBarComplete}
           />
         </View>
@@ -150,7 +165,7 @@ class Vocab extends Component {
             {/* The key extractor is needed to generate an unique key for every element
             into the flatlist */}
             <FlatList
-              data={[{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' }]}
+              data={this.props.wordsList}
               renderItem={({ item }) => <VocabRow>{item}</VocabRow>}
               keyExtractor={(item, index) => index.toString()}
             />
@@ -259,4 +274,11 @@ const styles = StyleSheet.create({
   engWordPronuntiation: { fontSize: 20 }
 });
 
-export default Vocab;
+
+const mapStateToProps = ({ vocab }) => {
+  const { progress, wordsList, currentCard } = vocab;
+  return { progress, wordsList, currentCard };
+};
+
+
+export default connect(mapStateToProps, { loadVocabData })(Vocab);

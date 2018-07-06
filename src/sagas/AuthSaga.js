@@ -35,14 +35,13 @@ function* logoutUser(action) {
   try {
     const auth = firebase.auth();
     /*
-		We have to save the result of the asynchronous call into a variable (even if it's not used)
-		because that way we ensure that the code after that is not going to be executed until we have
-		saved the variable.
-
-		According to https://redux-saga.js.org/docs/api/ , the call has to be made by passing the context 
-		(auth): call([context, fnName], ...args) , this way we are saying: this is the object where 
-		you are going to get the methods from.
-	*/
+    We have to save the result of the asynchronous call into a variable (even if it's not used)
+    because that way we ensure that the code after that is not going to be executed until we have
+    saved the variable.
+    According to https://redux-saga.js.org/docs/api/ , the call has to be made by passing the context 
+    (auth): call([context, fnName], ...args) , this way we are saying: this is the object where 
+    you are going to get the methods from.
+  */
     const result = yield call(
       [auth, auth.signOut]
     );
