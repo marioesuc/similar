@@ -62,7 +62,7 @@ class Menu extends Component {
           </View>  
 
           <View style={styles.buttonContainer}>
-            <Button style={styles.button} title='Acerca de' onPress={() => {}} />
+            <Button style={styles.button} title='Acerca de' onPress={() => { Actions.about(); }} />
           </View> 
 
           <View style={styles.buttonContainer}>
