@@ -39,6 +39,16 @@ class Menu extends Component {
                 Actions.vocab();
               }}
             />
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <Button
+              style={styles.button}
+              title='Pronunciación'
+              onPress={() => {
+                Actions.speech();
+              }}
+            />
           </View> 
 
           <View style={styles.buttonContainer}>
