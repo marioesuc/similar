@@ -4,6 +4,7 @@ import { fork } from 'redux-saga/effects';
 import authSaga from './AuthSaga';
 import registerSaga from './RegisterSaga';
 import vocabSaga from './VocabSaga';
+import speechSaga from './VocabSaga';
 import grammarSaga from './GrammarSaga';
 
 export default function* root() {
@@ -12,6 +13,7 @@ export default function* root() {
         fork(authSaga),
         fork(registerSaga),
         fork(vocabSaga),
+        fork(speechSaga),
         fork(grammarSaga)
     ];
 }

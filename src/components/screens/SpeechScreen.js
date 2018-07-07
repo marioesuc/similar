@@ -12,22 +12,20 @@ import { connect } from 'react-redux';
 import Voice from 'react-native-voice';
 
 import { Card, VocabRow, CircleButton } from '../common';
-import { loadVocabData, updateLearnedVocabWords, deleteLearnedVocabWords } from '../../actions';
+import { loadSpeechData, updateLearnedSpeechWords, deleteLearnedSpeechWords } from '../../actions';
 import * as Colors from './styles/Colors';
 
 class Speech extends Component {
 
   constructor(props) {
      super(props);
-     this.state = { textoStatus: '' ,texto:''};
-   
-     Voice.onSpeechStart = this.onSpeechStartHandler.bind(this);
-     Voice.onSpeechEnd = this.onSpeechEndHandler.bind(this);
+     this.state = { recording: false ,texto:''};
+
      Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
    }
 
   componentWillMount() {
-    this.props.loadVocabData();
+    this.props.loadSpeechData();
 
     this.setState({
       modalVisible: false,
@@ -77,41 +75,21 @@ class Speech extends Component {
       }
   }
 
-  onSpeechResultsHandler(result){
+  onSpeechResultsHandler(result) {
     console.log(result);
          this.setState({
              ...this.state,
-             texto:result.value
+             texto: result.value
          });
+         console.log(Voice.isRecognizing());
     }    
    
-   onSpeechStartHandler(){
-     this.setState({
-         ...this.state,
-         textoStatus:'iniciou'
-     });    
+   onStartButtonPress() {
+     Voice.start('en-US');
    }    
-   
-   onSpeechEndHandler(){
-     this.setState({
-         ...this.state,
-         textoStatus:'parou'
-     });    
-   }
-     
-   onStartButtonPress(e){
-     Voice.start('es-ES');
-     console.log('Habla');
-   }    
-   
-   onStopButtonPress(e){
-     Voice.stop();
-     console.log('PARA PARA PARAAA');
-     console.log(this.state);
-   } 
 
-   speechToText() {
-    console.log('Aquí dirías alguna pollada');
+  textToSpeech() {
+    Tts.speak(this.props.currentCard.eng);
   }
 
   checkCompleteList(props) {
@@ -124,8 +102,8 @@ class Speech extends Component {
             {
               text: 'Sí',
               onPress: () => {
-                this.props.deleteLearnedVocabWords();
-                this.props.loadVocabData();
+                this.props.deleteLearnedSpeechWords();
+                this.props.loadSpeechData();
               }
             }
           ],
@@ -138,8 +116,6 @@ class Speech extends Component {
       
     return (
       <View style={styles.container}>
-      <Button title='Empieza' onPress={this.onStartButtonPress.bind(this)} />
-      <Button title='Para' onPress={this.onStopButtonPress.bind(this)} />
 
       {/* Modal that is going to contain the flipping card */}
       <Modal isVisible={this.state.modalVisible}>
@@ -163,8 +139,8 @@ class Speech extends Component {
                   <Text style={styles.engWordPronuntiation}>{this.props.currentCard.pron}</Text>
                 </View>
                 <View style={styles.answersContainer}>
-                <Text>Presiona el micrófono para hablar:</Text>
-                <TouchableOpacity onPress={this.speechToText.bind(this)}><Text style={{ padding: 20, fontSize: 70 }}><Icon name='microphone' allowFontScaling /></Text></TouchableOpacity>
+                <Text>Toca el micrófono para hablar:</Text>
+                <TouchableOpacity onPress={this.onStartButtonPress.bind(this)}><Text style={{ padding: 20, fontSize: 70 }}><Icon name='microphone' allowFontScaling /></Text></TouchableOpacity>
                 <Text>Correcto</Text>
                 </View>
                 <CircleButton onPress={() => this.setState({ flipCard: true })} style={{ position: 'absolute', bottom: 20 }}>{'\u21c4'}</CircleButton>
@@ -184,14 +160,14 @@ class Speech extends Component {
                     buttonStyle={styles.optionButtonStyle}
                     onPress={() => {
                       if (this.state.optCorrect !== undefined) {
-                        this.props.updateLearnedVocabWords(
+                        this.props.updateLearnedSpeechWords(
                           {
                             eng: this.props.currentCard.eng,
                             success: this.state.optChosen === undefined
                           }
                         );
                       }
-                      this.props.loadVocabData();
+                      this.props.loadSpeechData();
                       this.setState({
                         modalVisible: false,
                         flipCard: false,
@@ -206,14 +182,14 @@ class Speech extends Component {
                     buttonStyle={styles.optionButtonStyle}
                     onPress={() => {
                       if (this.state.optCorrect !== undefined) {
-                        this.props.updateLearnedVocabWords(
+                        this.props.updateLearnedSpeechWords(
                           {
                             eng: this.props.currentCard.eng,
                             success: this.state.optChosen === undefined
                           }
                         );
                       }
-                      this.props.loadVocabData();
+                      this.props.loadSpeechData();
                       
                       this.setState({
                         flipCard: false,
@@ -371,10 +347,10 @@ const styles = StyleSheet.create({
 });
 
 
-const mapStateToProps = ({ vocab }) => {
-  const { progress, wordsList, currentCard } = vocab;
+const mapStateToProps = ({ speech }) => {
+  const { progress, wordsList, currentCard } = speech;
   return { progress, wordsList, currentCard };
 };
 
 
-export default connect(mapStateToProps, { loadVocabData, updateLearnedVocabWords, deleteLearnedVocabWords })(Speech);
+export default connect(mapStateToProps, { loadSpeechData, updateLearnedSpeechWords, deleteLearnedSpeechWords })(Speech);
