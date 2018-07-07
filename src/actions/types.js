@@ -21,3 +21,10 @@ export const REGISTER_CONFIRM_PASSWORD_CHANGED = 'register_confirm_password_chan
 export const REGISTER_USER = 'register_user';
 export const REGISTER_USER_SUCCESS = 'register_user_success';
 export const REGISTER_USER_FAIL = 'register_user_fail';
+
+// Types for Vocab
+export const LOAD_VOCAB = 'load_vocab';
+export const LOAD_VOCAB_SUCCESS = 'load_vocab_success';
+export const UPDATE_LEARNED_VOCAB_WORDS = 'update_learned_vocab_words';
+export const UPDATE_LEARNED_VOCAB_WORDS_SUCCESS = 'update_learned_vocab_words_success';
+export const DELETE_LEARNED_VOCAB_WORDS = 'delete_learned_vocab_words';

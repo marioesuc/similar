@@ -1,36 +1,100 @@
 // Component that renders screen related to the vocabulary and flashcards' exercises
 
 import React, { Component } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Alert, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { Button } from 'react-native-elements';
 import FlipCard from 'react-native-flip-card';
 import Tts from 'react-native-tts';
 import Icon from 'react-native-fa-icons';
+import { connect } from 'react-redux';
 
 import { Card, VocabRow, CircleButton } from '../common';
+import { loadVocabData, updateLearnedVocabWords, deleteLearnedVocabWords } from '../../actions';
 import * as Colors from './styles/Colors';
 
 class Vocab extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      username: '',
-      password: '',
+
+
+  componentWillMount() {
+    this.props.loadVocabData();
+
+    this.setState({
       modalVisible: false,
       flipCard: false,
-      engWord: 'Abandon',
-      spWord: 'Abandonar'
-    };
+      optCorrect: undefined,
+      optChosen: undefined
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.checkCompleteList(nextProps); 
+  }
+
+  onReply(chosen, correct) {
+    if (chosen !== correct) {
+      switch (chosen) {
+        case this.props.currentCard.opt1:
+          this.setState({ optChosen: 1 });
+          break;
+        case this.props.currentCard.opt2:
+          this.setState({ optChosen: 2 });
+          break;
+        case this.props.currentCard.opt3:
+          this.setState({ optChosen: 3 });
+          break;
+        case this.props.currentCard.opt4:
+          this.setState({ optChosen: 4 });
+          break;
+        default:
+      }
+    } 
+
+    switch (correct) {
+        case this.props.currentCard.opt1:
+          this.setState({ optCorrect: 1 });
+          break;
+        case this.props.currentCard.opt2:
+          this.setState({ optCorrect: 2 });
+          break;
+        case this.props.currentCard.opt3:
+          this.setState({ optCorrect: 3 });
+          break;
+        case this.props.currentCard.opt4:
+          this.setState({ optCorrect: 4 });
+          break;
+        default:
+      }
   }
 
   textToSpeech() {
-    Tts.speak(this.state.engWord);
+    Tts.speak(this.props.currentCard.eng);
+  }
+
+  checkCompleteList(props) {
+    if (Object.keys(props.currentCard).length === 0) {
+      Alert.alert('Listado completado', '¡Enhorabuena! Has respondido correctamente a todas las tarjetas y no quedan más para mostrar.\n\n¿Te gustaría resetear el listado para volver a empezar?',
+          [
+            {
+              text: 'No'
+            },
+            {
+              text: 'Sí',
+              onPress: () => {
+                this.props.deleteLearnedVocabWords();
+                this.props.loadVocabData();
+              }
+            }
+          ],
+          { cancelable: true }
+        );
+      }
   }
 
   render() {
+    
+
     return (
       <View style={styles.container}>
 
@@ -51,7 +115,7 @@ class Vocab extends Component {
               <Card style={styles.card}>
                 <View style={styles.cardHead}>
                   <View style={styles.engRow}>
-                    <Text style={styles.engWord}>{this.state.engWord}</Text>
+                    <Text style={styles.engWord}>{this.props.currentCard.eng}</Text>
                     <TouchableOpacity
                       style={styles.speakerContainer}
                       onPress={this.textToSpeech.bind(this)}
@@ -59,36 +123,52 @@ class Vocab extends Component {
                         <Icon name='volume-up' style={styles.speakerIcon} />
                     </TouchableOpacity>
                   </View>
-                  <Text style={styles.engWordPronuntiation}>Pronuntiation</Text>
+                  <Text style={styles.engWordPronuntiation}>{this.props.currentCard.pron}</Text>
                 </View>
                 <View style={styles.answersContainer}>
                 <Text>Elige una respuesta:</Text>
                   <View style={styles.answersRow}>
                     <Button
-                      title='Option 1'
+                      title={this.props.currentCard.opt1}
                       color='blue'
-                      buttonStyle={styles.optionButtonStyle}
-                      onPress={() => this.setState({ modalVisible: true })}
+                      buttonStyle={[
+                        styles.optionButtonStyle,
+                        this.state.optCorrect === 1 ? styles.optSuccess : null,
+                        this.state.optChosen === 1 ? styles.optFail : null
+                        ]}
+                      onPress={this.onReply.bind(this, this.props.currentCard.opt1, this.props.currentCard.sp)}
                     />
                     <Button
-                      title='Option 2'
+                      title={this.props.currentCard.opt2}
                       color='blue'
-                      buttonStyle={styles.optionButtonStyle}
-                      onPress={() => this.setState({ modalVisible: true })}
+                      buttonStyle={[
+                        styles.optionButtonStyle,
+                        this.state.optCorrect === 2 ? styles.optSuccess : null,
+                        this.state.optChosen === 2 ? styles.optFail : null
+                        ]}
+                      onPress={this.onReply.bind(this, this.props.currentCard.opt2, this.props.currentCard.sp)}
                     />
                   </View>
                   <View style={styles.answersRow}>
                     <Button
-                      title='Option 1'
+                      title={this.props.currentCard.opt3}
                       color='blue'
-                      buttonStyle={styles.optionButtonStyle}
-                      onPress={() => this.setState({ modalVisible: true })}
+                      buttonStyle={[
+                        styles.optionButtonStyle,
+                        this.state.optCorrect === 3 ? styles.optSuccess : null,
+                        this.state.optChosen === 3 ? styles.optFail : null
+                        ]}
+                      onPress={this.onReply.bind(this, this.props.currentCard.opt3, this.props.currentCard.sp)}
                     />
                     <Button
-                      title='Option 2'
+                      title={this.props.currentCard.opt4}
                       color='blue'
-                      buttonStyle={styles.optionButtonStyle}
-                      onPress={() => this.setState({ modalVisible: true })}
+                      buttonStyle={[
+                        styles.optionButtonStyle,
+                        this.state.optCorrect === 4 ? styles.optSuccess : null,
+                        this.state.optChosen === 4 ? styles.optFail : null
+                        ]}
+                      onPress={this.onReply.bind(this, this.props.currentCard.opt4, this.props.currentCard.sp)}
                     />
                   </View>
                 </View>
@@ -100,20 +180,52 @@ class Vocab extends Component {
               <Card style={styles.card}>
                 <View style={styles.rightAnswerContainer}>
                   <Text style={styles.rightAnswerSubtext}>La respuesta correcta es:</Text>
-                  <Text style={styles.spWord}>{this.state.spWord}</Text>
+                  <Text style={styles.spWord}>{this.props.currentCard.sp}</Text>
                 </View>
                 <View style={styles.answerButtonsContainer}>
                   <Button
                     title='Cerrar'
                     color='blue'
                     buttonStyle={styles.optionButtonStyle}
-                    onPress={() => this.setState({ modalVisible: false })}
+                    onPress={() => {
+                      if (this.state.optCorrect !== undefined) {
+                        this.props.updateLearnedVocabWords(
+                          {
+                            eng: this.props.currentCard.eng,
+                            success: this.state.optChosen === undefined
+                          }
+                        );
+                      }
+                      this.props.loadVocabData();
+                      this.setState({
+                        modalVisible: false,
+                        flipCard: false,
+                        optCorrect: undefined,
+                        optChosen: undefined
+                      });
+                    }}
                   />
                   <Button
                     title='Siguiente'
                     color='blue'
                     buttonStyle={styles.optionButtonStyle}
-                    onPress={() => this.setState({ flipCard: false })}
+                    onPress={() => {
+                      if (this.state.optCorrect !== undefined) {
+                        this.props.updateLearnedVocabWords(
+                          {
+                            eng: this.props.currentCard.eng,
+                            success: this.state.optChosen === undefined
+                          }
+                        );
+                      }
+                      this.props.loadVocabData();
+                      
+                      this.setState({
+                        flipCard: false,
+                        optCorrect: undefined,
+                        optChosen: undefined
+                      });
+                    }}
                   />
                 </View>
               </Card>
@@ -128,8 +240,9 @@ class Vocab extends Component {
             Tu progreso:
           </Text>
           <ProgressBarAnimated
+            backgroundColor={Colors.progressBar}
             width={300}
-            value={75}
+            value={this.props.progress}
             backgroundColorOnComplete={Colors.progressBarComplete}
           />
         </View>
@@ -150,15 +263,16 @@ class Vocab extends Component {
             {/* The key extractor is needed to generate an unique key for every element
             into the flatlist */}
             <FlatList
-              data={[{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '' },{ col1: 'Hello', col2: 'Hola', col3: '\u2715' },{ col1: 'Hello', col2: 'Hola', col3: '\u2714' }]}
+              data={this.props.wordsList}
               renderItem={({ item }) => <VocabRow>{item}</VocabRow>}
               keyExtractor={(item, index) => index.toString()}
             />
           </Card>
           <Button
-            title='FLASHCARDS'
+            title='Flashcards'
             buttonStyle={styles.buttonStyle}
-            onPress={() => this.setState({ modalVisible: true })}
+            onPress={() => this.setState({ modalVisible: true })
+          }
           />
         </View>
 
@@ -256,7 +370,16 @@ const styles = StyleSheet.create({
   wordsListLabel: { fontSize: 17 },
   tableHeader: { height: 50 },
   headerRow: { backgroundColor: Colors.headerRow },
-  engWordPronuntiation: { fontSize: 20 }
+  engWordPronuntiation: { fontSize: 20 },
+  optSuccess: { backgroundColor: 'lightgreen' },
+  optFail: { backgroundColor: 'red' }
 });
 
-export default Vocab;
+
+const mapStateToProps = ({ vocab }) => {
+  const { progress, wordsList, currentCard } = vocab;
+  return { progress, wordsList, currentCard };
+};
+
+
+export default connect(mapStateToProps, { loadVocabData, updateLearnedVocabWords, deleteLearnedVocabWords })(Vocab);
