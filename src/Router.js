@@ -6,6 +6,7 @@ import Login from './components/screens/LoginScreen';
 import Register from './components/screens/RegisterScreen';
 import Menu from './components/screens/MenuScreen';
 import Vocab from './components/screens/VocabScreen';
+import Speech from './components/screens/SpeechScreen';
 import Grammar from './components/screens/GrammarScreen';
 import VideoViewer from './components/screens/VideoViewerScreen';
 
@@ -20,6 +21,7 @@ const RouterComponent = () => {
 				<Scene key="main" >
 					<Scene key="menu" component={Menu} title="Principal" hideNavBar initial />
 					<Scene key="vocab" component={Vocab} title="Vocabulario" />
+					<Scene key="speech" component={Speech} title="Pronunciación" />
 					<Scene key="grammar" component={Grammar} title="Gramática" />
 					<Scene key="videoViewer" component={VideoViewer} title="Vídeo" />
 				</Scene>
