@@ -17,21 +17,16 @@ import * as Colors from './styles/Colors';
 
 class Speech extends Component {
 
-  constructor(props) {
-     super(props);
-     this.state = { recording: false ,texto:''};
-
-     Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
-   }
-
   componentWillMount() {
+    Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
     this.props.loadSpeechData();
 
     this.setState({
       modalVisible: false,
       flipCard: false,
-      optCorrect: undefined,
-      optChosen: undefined
+      speechElems: [],
+      speechResult: '',
+      speechCorrect: undefined
     });
   }
 
@@ -76,12 +71,12 @@ class Speech extends Component {
   }
 
   onSpeechResultsHandler(result) {
-    console.log(result);
          this.setState({
              ...this.state,
-             texto: result.value
+             speechElems: result.value.map(x => x.toLowerCase())
          });
-         console.log(Voice.isRecognizing());
+
+         this.checkPronunciation();
     }    
    
    onStartButtonPress() {
@@ -112,8 +107,16 @@ class Speech extends Component {
       }
   }
 
-  render() {
-      
+  checkPronunciation() {
+    console.log(this.state.speechElems);
+    if (this.state.speechElems.includes(this.props.currentCard.eng)) {
+      this.setState({ speechResult: '¡Correcto!', speechCorrect: true });
+    } else {
+      this.setState({ speechResult: 'Incorrecto', speechCorrect: false });
+    }
+  }
+
+  render() { 
     return (
       <View style={styles.container}>
 
@@ -136,12 +139,11 @@ class Speech extends Component {
                   <View style={styles.engRow}>
                     <Text style={styles.engWord}>{this.props.currentCard.eng}</Text>
                   </View>
-                  <Text style={styles.engWordPronuntiation}>{this.props.currentCard.pron}</Text>
                 </View>
                 <View style={styles.answersContainer}>
                 <Text>Toca el micrófono para hablar:</Text>
                 <TouchableOpacity onPress={this.onStartButtonPress.bind(this)}><Text style={{ padding: 20, fontSize: 70 }}><Icon name='microphone' allowFontScaling /></Text></TouchableOpacity>
-                <Text>Correcto</Text>
+                <Text style={this.state.speechCorrect ? styles.speechSuccess : styles.speechFail} >{this.state.speechResult}</Text>
                 </View>
                 <CircleButton onPress={() => this.setState({ flipCard: true })} style={{ position: 'absolute', bottom: 20 }}>{'\u21c4'}</CircleButton>
               </Card>
@@ -150,8 +152,14 @@ class Speech extends Component {
 
               <Card style={styles.card}>
                 <View style={styles.rightAnswerContainer}>
-                  <Text style={styles.rightAnswerSubtext}>La respuesta correcta es:</Text>
-                  <Text style={styles.spWord}>{this.props.currentCard.sp}</Text>
+                  <Text style={styles.rightAnswerSubtext}>La pronunciación correcta es:</Text>
+                    <TouchableOpacity
+                        style={styles.speakerContainer}
+                        onPress={this.textToSpeech.bind(this)}
+                    >
+                        <Icon name='volume-up' style={styles.speakerIcon} />
+                    </TouchableOpacity>
+                    <Text style={styles.engWordPronuntiation}>{this.props.currentCard.pron}</Text>
                 </View>
                 <View style={styles.answerButtonsContainer}>
                   <Button
@@ -159,11 +167,11 @@ class Speech extends Component {
                     color='blue'
                     buttonStyle={styles.optionButtonStyle}
                     onPress={() => {
-                      if (this.state.optCorrect !== undefined) {
+                      if (this.state.speechCorrect !== undefined) {
                         this.props.updateLearnedSpeechWords(
                           {
                             eng: this.props.currentCard.eng,
-                            success: this.state.optChosen === undefined
+                            success: this.state.speechCorrect
                           }
                         );
                       }
@@ -181,20 +189,21 @@ class Speech extends Component {
                     color='blue'
                     buttonStyle={styles.optionButtonStyle}
                     onPress={() => {
-                      if (this.state.optCorrect !== undefined) {
+                      if (this.state.speechCorrect !== undefined) {
                         this.props.updateLearnedSpeechWords(
                           {
                             eng: this.props.currentCard.eng,
-                            success: this.state.optChosen === undefined
+                            success: this.state.speechCorrect
                           }
                         );
                       }
+
                       this.props.loadSpeechData();
                       
                       this.setState({
                         flipCard: false,
-                        optCorrect: undefined,
-                        optChosen: undefined
+                        speechResult: '',
+                        speechCorrect: undefined
                       });
                     }}
                   />
@@ -228,7 +237,7 @@ class Speech extends Component {
               <VocabRow
                 style={styles.headerRow}
               >
-                {{ col1: 'Inglés', col2: 'Español', col3: 'Memorizada' }}
+                {{ col1: 'Inglés', col2: 'Pronunc.', col3: 'Memorizada' }}
               </VocabRow>
             </View>
             {/* The key extractor is needed to generate an unique key for every element
@@ -312,18 +321,19 @@ const styles = StyleSheet.create({
     left: 10
   },
   speakerIcon: {
-    fontSize: 35,
+    marginTop: 20,
+    fontSize: 70,
     color: Colors.speakerIcon
   },
   answersContainer: {
     position: 'absolute',
-    top: 130,
+    top: 110,
     alignItems: 'center'
   },
   answersRow: { flexDirection: 'row' },
   rightAnswerContainer: {
     position: 'absolute',
-    top: 100,
+    top: 60,
     alignItems: 'center'
   },
   rightAnswerSubtext: { fontSize: 20 },
@@ -341,9 +351,9 @@ const styles = StyleSheet.create({
   wordsListLabel: { fontSize: 17 },
   tableHeader: { height: 50 },
   headerRow: { backgroundColor: Colors.headerRow },
-  engWordPronuntiation: { fontSize: 20 },
-  optSuccess: { backgroundColor: 'lightgreen' },
-  optFail: { backgroundColor: 'red' }
+  engWordPronuntiation: { fontSize: 20, padding: 20 },
+  speechSuccess: { color: 'green', fontSize: 20 },
+  speechFail: { color: 'red', fontSize: 20 }
 });
 
 

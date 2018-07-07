@@ -25,7 +25,7 @@ function* fetchData(path) {
 }
 
 // Function that manages the logic of the user login
-function* loadVocabData() {
+function* loadSpeechData() {
   console.log('Entra');
   let vocabSuccess = undefined;
   let vocabDataPerUser = {};
@@ -41,7 +41,7 @@ function* loadVocabData() {
 
     const vocabData = yield call(fetchData, '/vocab');
 
-    learnedVocabData = yield call(fetchData, `/users/${currentUser.uid}/learnedVocabWords`);
+    learnedVocabData = yield call(fetchData, `/users/${currentUser.uid}/learnedSpeechWords`);
    
       Object.keys(vocabData).forEach(key => {
         if (learnedVocabData) {
@@ -66,7 +66,7 @@ function* loadVocabData() {
             } 
               wordsList.push({
                 col1: key,
-                col2: vocabDataPerUser[key].sp,
+                col2: vocabDataPerUser[key].pron,
                 col3: success
               });
         });
@@ -130,7 +130,7 @@ function* loadVocabData() {
 
 function* updateData(object) {
   const { currentUser } = firebase.auth();
-  const ref = firebase.database().ref(`/users/${currentUser.uid}/learnedVocabWords`);
+  const ref = firebase.database().ref(`/users/${currentUser.uid}/learnedSpeechWords`);
   const data = yield call([ref, ref.once], 'value');
 
   // If it doesn't exist
@@ -164,13 +164,13 @@ function* deleteLearnedVocabWords() {
     const ref = firebase.database().ref(`/users/${currentUser.uid}`);
     yield call([ref, ref.remove]);
   } catch (error) {
-
+    console.log(error.message);
   }
 }
 
 
 function* speechSaga() {
-  yield takeLatest(LOAD_SPEECH, loadVocabData);
+  yield takeLatest(LOAD_SPEECH, loadSpeechData);
   yield takeLatest(UPDATE_LEARNED_SPEECH_WORDS, updateLearnedVocabWords);
   yield takeLatest(DELETE_LEARNED_SPEECH_WORDS, deleteLearnedVocabWords);
 }
