@@ -119,7 +119,7 @@ function* loadVocabData() {
 
     // We calculate the progress
 
-    progress = (Object.keys(learnedVocabData).length * 100) / Object.keys(vocabDataPerUser).length;
+    progress = ((Object.keys(vocabDataPerUser).length - Object.keys(unlearnedVocabData).length) * 100) / Object.keys(vocabDataPerUser).length;
 
     yield put({ type: LOAD_VOCAB_SUCCESS, payload: { progress, wordsList, currentCard } });
   } catch (error) {

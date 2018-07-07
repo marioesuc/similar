@@ -5,7 +5,7 @@ import { CardSection } from './CardSection';
 
 class ListItem extends Component {
 	onRowPress() {
-		Actions.videoViewer();
+		Actions.videoViewer({ videoUrl: this.props.videoUrl, videoTitle: this.props.title, desc: this.props.desc });
 	}
 
 	render() {
@@ -14,11 +14,11 @@ class ListItem extends Component {
 				<View style={styles.rowStyle}>
 					<CardSection style={{ height: 100, justifyContent: 'flex-start' }}>
 						<Image 
-						style={{width: 100, height: 75, minWidth: 100}}
+						style={{ width: 100, height: 75, minWidth: 100 }}
 						source={{ uri: this.props.picUrl }} />
 
 						<Text style={styles.titleStyle}>
-							{this.props.text}
+							{this.props.title}
 						</Text>
 					</CardSection>
 				</View>
