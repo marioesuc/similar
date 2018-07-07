@@ -7,6 +7,9 @@ import * as Colors from './styles/Colors';
 class VideoViewer extends Component {
 
   render() {
+    console.log(this.props.videoUrl);
+    console.log(this.props.videoTitle);
+    console.log(this.props.desc);
     return (
 
       <View style={styles.container}>
@@ -14,13 +17,13 @@ class VideoViewer extends Component {
          <WebView
             javaScriptEnabled={true}
             domStorageEnabled={true}
-            source={{uri: 'https://www.youtube.com/embed/3wmVgKjMpC8' }}
+            source={{uri: this.props.videoUrl }}
           />
           </View>
 
           <View style={styles.textBox}>
-            <Text style={styles.titleText}> Título del vídeo </Text>
-            <Text> Descripción del vídeo. Descripción del vídeo. Descripción del vídeo. Descripción del vídeo. Descripción del vídeo. Descripción del vídeo. Descripción del vídeo.  </Text>
+            <Text style={styles.titleText}> {this.props.videoTitle} </Text>
+            <Text>{this.props.desc}</Text>
           </View>
 
       </View>
