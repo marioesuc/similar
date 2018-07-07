@@ -9,6 +9,7 @@ import Vocab from './components/screens/VocabScreen';
 import Speech from './components/screens/SpeechScreen';
 import Grammar from './components/screens/GrammarScreen';
 import VideoViewer from './components/screens/VideoViewerScreen';
+import About from './components/screens/AboutScreen';
 
 const RouterComponent = () => {
 	return (
@@ -24,6 +25,7 @@ const RouterComponent = () => {
 					<Scene key="speech" component={Speech} title="Pronunciación" />
 					<Scene key="grammar" component={Grammar} title="Gramática" />
 					<Scene key="videoViewer" component={VideoViewer} title="Vídeo" />
+					<Scene key="about" component={About} title="Acerca de" />
 				</Scene>
 			</Scene>
 		</Router>

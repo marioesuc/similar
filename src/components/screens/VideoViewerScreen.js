@@ -7,9 +7,6 @@ import * as Colors from './styles/Colors';
 class VideoViewer extends Component {
 
   render() {
-    console.log(this.props.videoUrl);
-    console.log(this.props.videoTitle);
-    console.log(this.props.desc);
     return (
 
       <View style={styles.container}>
