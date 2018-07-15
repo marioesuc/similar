@@ -1,4 +1,4 @@
-// All reducers associated to Authentication
+// All reducers associated to Vocabulary
 
 import { 
 	LOAD_VOCAB_SUCCESS,

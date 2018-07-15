@@ -1,4 +1,4 @@
-// Component that renders screen related to the vocabulary and flashcards' exercises
+// Component that renders screen related to the speech and flashcards' exercises
 
 import React, { Component } from 'react';
 import { Alert, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
@@ -21,6 +21,7 @@ class Speech extends Component {
     Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
     this.props.loadSpeechData();
 
+    // We define the initial state once the component is mounted
     this.setState({
       modalVisible: false,
       flipCard: false,
@@ -31,6 +32,7 @@ class Speech extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // Once we get the new props, we pass them to the method that check if the words list has been completed
     this.checkCompleteList(nextProps); 
   }
 
@@ -70,6 +72,7 @@ class Speech extends Component {
       }
   }
 
+  // Every time we get a microphone input, we update the state with the array of possible pronounced words in lower case
   onSpeechResultsHandler(result) {
          this.setState({
              ...this.state,
@@ -79,6 +82,7 @@ class Speech extends Component {
          this.checkPronunciation();
     }    
    
+   // When the recording starts, we reset the state
    onStartButtonPress() {
       this.setState({
         speechElems: [],
@@ -92,6 +96,9 @@ class Speech extends Component {
     Tts.speak(this.props.currentCard.eng);
   }
 
+  // Method that checks whether the list of words is complete or not
+  // It's done by checking the current card's property, if it's empty then there
+  // are no more words to show
   checkCompleteList(props) {
     if (Object.keys(props.currentCard).length === 0) {
       Alert.alert('Listado completado', '¡Enhorabuena! Has respondido correctamente a todas las tarjetas y no quedan más para mostrar.\n\n¿Te gustaría resetear el listado para volver a empezar?',
@@ -112,6 +119,9 @@ class Speech extends Component {
       }
   }
 
+  // Method that checks whether the pronunciation is correct or not
+  // To achieve this we just take the english word from the database and see if
+  // it's contained into the array returned by the speech component
   checkPronunciation() {
     console.log(this.state.speechElems);
     if (this.state.speechElems.includes(this.props.currentCard.eng)) {

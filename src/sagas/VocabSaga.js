@@ -1,4 +1,4 @@
-// Saga file that manages all functions related to the Authentication on Firebase
+// Saga file that manages all functions related to the Vocabulary
 
 import firebase from 'firebase';
 import { put, takeLatest, call } from 'redux-saga/effects';
@@ -42,6 +42,7 @@ function* loadVocabData() {
 
     learnedVocabData = yield call(fetchData, `/users/${currentUser.uid}/learnedVocabWords`);
    
+   // We construct the array of objects per user that says whether the word is learned or not
       Object.keys(vocabData).forEach(key => {
         if (learnedVocabData) {
           if (Object.keys(learnedVocabData).includes(key)) {
@@ -81,13 +82,7 @@ function* loadVocabData() {
         // We construct the object for the current card
         const randomPos = Math.floor(Math.random() * Object.keys(unlearnedVocabData).length);
         const randomObject = Object.keys(unlearnedVocabData)[randomPos];
-    
-        /*let answers = [
-          vocabData[Object.keys(vocabData)[Math.floor(Math.random() * Object.keys(vocabData).length)]].sp,
-          vocabData[Object.keys(vocabData)[Math.floor(Math.random() * Object.keys(vocabData).length)]].sp,
-          vocabData[Object.keys(vocabData)[Math.floor(Math.random() * Object.keys(vocabData).length)]].sp,
-          unlearnedVocabData[randomObject].sp
-        ];*/
+
     
         let answers = [];
     

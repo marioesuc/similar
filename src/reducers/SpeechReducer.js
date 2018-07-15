@@ -1,4 +1,4 @@
-// All reducers associated to Authentication
+// All reducers associated to Speech
 
 import { 
 	LOAD_SPEECH_SUCCESS,
