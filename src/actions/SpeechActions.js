@@ -1,4 +1,4 @@
-// These are the action creators associated to the authentication
+// These are the action creators associated to the Speech
 
 import { 
 	LOAD_SPEECH,
