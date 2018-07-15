@@ -80,6 +80,11 @@ class Speech extends Component {
     }    
    
    onStartButtonPress() {
+      this.setState({
+        speechElems: [],
+        speechResult: '',
+        speechCorrect: undefined
+      });
      Voice.start('en-US');
    }    
 
