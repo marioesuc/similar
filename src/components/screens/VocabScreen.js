@@ -19,7 +19,7 @@ class Vocab extends Component {
 
   componentWillMount() {
     this.props.loadVocabData();
-    Tts.setDefaultLanguage('en-US');
+    Tts.setDefaultLanguage('en');
 
     this.setState({
       modalVisible: false,
