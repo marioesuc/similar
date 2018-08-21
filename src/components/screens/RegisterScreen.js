@@ -1,7 +1,8 @@
 // Component that renders screen related to the register form
 
 import React, { Component } from 'react';
-import { Button, TextInput, View, Image, Text, StyleSheet } from 'react-native';
+import { TextInput, View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux';
 import {
   registerEmailChanged,
@@ -35,7 +36,10 @@ class Register extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <LinearGradient 
+        colors={[Colors.backgroundTopColor, Colors.backgroundBottomColor]}
+        style={styles.container}
+      >
         <View style={styles.logoContainer}>
           <Image style={styles.logo} source={require('../../../images/similar_logo.png')} />
         </View>
@@ -60,12 +64,17 @@ class Register extends Component {
           style={styles.input}
         />
 
-        <Button style={styles.button} title='Registrarse' onPress={this.onButtonPress.bind(this)} />
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={this.onButtonPress.bind(this)}
+        >
+          <Text style={styles.buttonText}>REGISTRARSE</Text>
+        </TouchableOpacity>
            
         <Text style={styles.errorTextStyle}>
           {this.props.error}
         </Text>
-      </View>
+      </LinearGradient>
     );
   }
 }
@@ -90,11 +99,21 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center'
   },
+  buttonContainer: {
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    paddingVertical: 15,
+    width: 300
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#FFF',
+    fontWeight: '700'
+  },
   errorTextStyle: {
     marginTop: 20,
     fontSize: 20,
     alignSelf: 'center',
-    color: 'red'
+    color: Colors.errorText
   }
 });
 

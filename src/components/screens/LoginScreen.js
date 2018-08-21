@@ -1,7 +1,7 @@
 // Component that renders screen related to the login
 
 import React, { Component } from 'react';
-import { Button, TextInput, View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { TextInput, View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
@@ -28,9 +28,9 @@ class Login extends Component {
   render() {
     return (
       <LinearGradient 
-  colors={['#C1E8FC', '#4B96BB']}
-     style = { styles.container }>
-      
+        colors={[Colors.backgroundTopColor, Colors.backgroundBottomColor]}
+        style={styles.container}
+      >
         <View style={styles.logoContainer}>
           <Image style={styles.logo} source={require('../../../images/similar_logo.png')} />
         </View>
@@ -69,7 +69,6 @@ class Login extends Component {
             Registro
           </Text>
         </TouchableOpacity>
-      
       </LinearGradient>
     );
   }
@@ -92,14 +91,11 @@ const styles = StyleSheet.create({
     width: 250,
     height: 200
   },
-  button: {
-    padding: 20
-  },
   errorTextStyle: {
     marginTop: 20,
     fontSize: 20,
     alignSelf: 'center',
-    color: '#B32156'
+    color: Colors.errorText
   },
   buttonsContainer: {
     flexDirection: 'row',
