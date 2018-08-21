@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Alert, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modal';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { Button } from 'react-native-elements';
@@ -133,7 +134,10 @@ class Speech extends Component {
 
   render() { 
     return (
-      <View style={styles.container}>
+      <LinearGradient 
+        colors={[Colors.backgroundTopColor, Colors.backgroundBottomColor]}
+        style={styles.container}
+      >
 
       {/* Modal that is going to contain the flipping card */}
       <Modal isVisible={this.state.modalVisible}>
@@ -272,7 +276,7 @@ class Speech extends Component {
         </View>
 
 
-      </View>
+      </LinearGradient>
  
 
     );

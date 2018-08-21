@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { View, WebView, Text, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import * as Colors from './styles/Colors';
 
 class VideoViewer extends Component {
@@ -9,7 +10,10 @@ class VideoViewer extends Component {
   render() {
     return (
 
-      <View style={styles.container}>
+      <LinearGradient 
+        colors={[Colors.backgroundTopColor, Colors.backgroundBottomColor]}
+        style={styles.container}
+      >
         <View style={styles.viewer}>
          <WebView
             javaScriptEnabled={true}
@@ -23,7 +27,7 @@ class VideoViewer extends Component {
             <Text>{this.props.desc}</Text>
           </View>
 
-      </View>
+      </LinearGradient>
     );
   }
 }

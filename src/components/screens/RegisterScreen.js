@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonContainer: {
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: Colors.transparentButton,
     paddingVertical: 15,
     width: 300
   },

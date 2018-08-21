@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Alert, Button, View, Image, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { Card } from '../common';
@@ -26,7 +27,10 @@ class Menu extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <LinearGradient 
+        colors={[Colors.backgroundTopColor, Colors.backgroundBottomColor]}
+        style={styles.container}
+      >
         <View style={styles.logoContainer}>
           <Image style={styles.logo} source={require('../../../images/similar_logo.png')} />
         </View>
@@ -70,7 +74,7 @@ class Menu extends Component {
           </View> 
         </Card> 
 
-      </View>
+      </LinearGradient>
     );
   }
 }

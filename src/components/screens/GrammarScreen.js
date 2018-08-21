@@ -1,8 +1,9 @@
 // Component that renders screen related to the grammar videos
 
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 import ListItem from '../common/ListItem';
 import * as Colors from './styles/Colors';
@@ -17,13 +18,16 @@ class Grammar extends Component {
   render() {
     return (
 
-      <View style={styles.container}>
+      <LinearGradient 
+        colors={[Colors.backgroundTopColor, Colors.backgroundBottomColor]}
+        style={styles.container}
+      >
         <FlatList
           data={this.props.grammarData}
           renderItem={({ item }) => <ListItem picUrl={item.picUrl} videoUrl={item.videoUrl} title={item.title} desc={item.desc} />}
           keyExtractor={(item, index) => index.toString()}
         />
-      </View>
+      </LinearGradient>
     );
   }
 }

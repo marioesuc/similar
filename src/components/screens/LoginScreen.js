@@ -91,6 +91,9 @@ const styles = StyleSheet.create({
     width: 250,
     height: 200
   },
+  button: {
+    padding: 20
+  },
   errorTextStyle: {
     marginTop: 20,
     fontSize: 20,
@@ -102,7 +105,7 @@ const styles = StyleSheet.create({
     width: 300
   },
   buttonContainer: {
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: Colors.transparentButton,
     paddingVertical: 15,
     width: 300
   },
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
   },
   registerButton: { flex: 1 },
   buttonBottom: {
-    backgroundColor: '#3170A5',
+    backgroundColor: Colors.registerButton,
     paddingVertical: 15,
     width: '100%',
     position: 'absolute',
