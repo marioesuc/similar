@@ -60,7 +60,7 @@ class Login extends Component {
         </Text>
         <TouchableOpacity style={styles.buttonBottom}>
           <Text
-            style={styles.buttonText}
+            style={styles.bottomButtonText}
             onPress={() => {
                     Actions.register();
                   }}
@@ -110,6 +110,11 @@ const styles = StyleSheet.create({
     width: 300
   },
   buttonText: {
+    textAlign: 'center',
+    color: Colors.transparentButtonText,
+    fontWeight: '700'
+  },
+  bottomButtonText: {
     textAlign: 'center',
     color: '#FFF',
     fontWeight: '700'

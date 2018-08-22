@@ -21,6 +21,7 @@ class Speech extends Component {
   componentWillMount() {
     Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
     this.props.loadSpeechData();
+    Tts.setDefaultLanguage('en');
 
     // We define the initial state once the component is mounted
     this.setState({

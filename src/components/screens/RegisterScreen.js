@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    color: '#FFF',
+    color: Colors.transparentButtonText,
     fontWeight: '700'
   },
   errorTextStyle: {

@@ -1,13 +1,14 @@
 // Component that renders screen related to main menu options
 
 import React, { Component } from 'react';
-import { Alert, Button, View, Image, StyleSheet } from 'react-native';
+import { Alert, Button, View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { Card } from '../common';
 import { logoutUser } from '../../actions';
 import * as Colors from './styles/Colors';
+import Icon from 'react-native-fa-icons';
 
 class Menu extends Component {
   constructor(props) {
@@ -34,46 +35,77 @@ class Menu extends Component {
         <View style={styles.logoContainer}>
           <Image style={styles.logo} source={require('../../../images/similar_logo.png')} />
         </View>
-        <Card>
-          <View style={styles.buttonContainer}>
-            <Button
-              style={styles.button}
-              title='Vocabulario'
-              onPress={() => {
-                Actions.vocab();
-              }}
-            />
-          </View>
+        <View style={styles.buttonsContainer}>
+          <TouchableOpacity
+            onPress={() => { Actions.vocab(); }}
+          >
+          <LinearGradient 
+          colors={['#658FD6', '#144395']}
+          style={styles.signInWithFacebookButton}
+        >
+              <Icon name='language' style={styles.buttonIcon} />
+              <Text style={styles.signInText}>
+                  {'Vocabulario'}
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
 
-          <View style={styles.buttonContainer}>
-            <Button
-              style={styles.button}
-              title='Pronunciación'
-              onPress={() => {
-                Actions.speech();
-              }}
-            />
-          </View> 
+          <TouchableOpacity
+            onPress={() => { Actions.speech(); }}
+          >
+          <LinearGradient 
+          colors={['#658FD6', '#144395']}
+          style={styles.signInWithFacebookButton}
+        >
+              <Icon name='comments' style={styles.buttonIcon} />
+              <Text style={styles.signInText}>
+                  {'Pronunciación'}
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
 
-          <View style={styles.buttonContainer}>
-            <Button
-              style={styles.button}
-              title='Gramática'
-              onPress={() => {
-                Actions.grammar();
-              }}
-            />
-          </View>  
+          <TouchableOpacity
+            onPress={() => { Actions.grammar(); }}
+          >
+          <LinearGradient 
+          colors={['#658FD6', '#144395']}
+          style={styles.signInWithFacebookButton}
+        >
+              <Icon name='pencil' style={styles.buttonIcon} />
+              <Text style={styles.signInText}>
+                  {'Gramática'}
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
 
-          <View style={styles.buttonContainer}>
-            <Button style={styles.button} title='Acerca de' onPress={() => { Actions.about(); }} />
-          </View> 
+          <TouchableOpacity
+            onPress={() => { Actions.about(); }}
+          >
+          <LinearGradient 
+          colors={['#658FD6', '#144395']}
+          style={styles.signInWithFacebookButton}
+        >
+              <Icon name='info' style={styles.buttonIcon} />
+              <Text style={styles.signInText}>
+                  {'Acerca de'}
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
 
-          <View style={styles.buttonContainer}>
-            <Button style={styles.button} title='Cerrar sesión' onPress={this.props.logoutUser} />
-          </View> 
-        </Card> 
-
+          <TouchableOpacity
+            onPress={this.props.logoutUser}
+          >
+          <LinearGradient 
+          colors={['#658FD6', '#144395']}
+          style={styles.signInWithFacebookButton}
+        >
+              <Icon name='sign-out' style={styles.buttonIcon} />
+              <Text style={styles.signInText}>
+                  {'Cerrar sesión'}
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
       </LinearGradient>
     );
   }
@@ -100,7 +132,38 @@ const styles = StyleSheet.create({
     width: 300,
     alignItems: 'center'
   },
-  buttonContainer: { width: '100%', padding: 10 }
+  buttonContainer: { width: '100%', padding: 10 },
+  signInWithFacebookButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 250,
+        height: 40,
+        padding: 5,
+        borderRadius: 5,
+        margin: 5,
+        elevation: 2
+    },
+    signInText: {
+        color: 'white',
+        marginLeft: 5,
+        fontFamily: 'HelveticaNeue-Medium',
+        fontSize: 17,
+        fontWeight: 'bold'
+    },
+    buttonIcon: {
+        marginRight: 5,
+        color: 'white',
+        fontSize: 25
+    },
+    buttonsContainer: {
+      marginTop: 20,
+      width: 280,
+      padding: 10,
+      alignItems: 'center',
+      backgroundColor: 'rgba(255,255,255,0.6)',
+      elevation: 2
+    }
 });
 
 
