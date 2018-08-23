@@ -246,6 +246,7 @@ class Vocab extends Component {
           </Text>
           <ProgressBarAnimated
             backgroundColor={Colors.progressBar}
+            borderColor={Colors.progressBarBorder}
             width={300}
             value={this.props.progress}
             backgroundColorOnComplete={Colors.progressBarComplete}

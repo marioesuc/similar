@@ -58,12 +58,13 @@ class Login extends Component {
         <Text style={styles.errorTextStyle}>
           {this.props.error}
         </Text>
-        <TouchableOpacity style={styles.buttonBottom}>
-          <Text
-            style={styles.bottomButtonText}
-            onPress={() => {
+        <TouchableOpacity style={styles.buttonBottom}
+        onPress={() => {
                     Actions.register();
                   }}
+        >
+          <Text
+            style={styles.bottomButtonText}
             title="Registro"
           >
             Registro

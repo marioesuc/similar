@@ -1,11 +1,10 @@
 // Component that renders screen related to main menu options
 
 import React, { Component } from 'react';
-import { Alert, Button, View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { Alert, View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { Card } from '../common';
 import { logoutUser } from '../../actions';
 import * as Colors from './styles/Colors';
 import Icon from 'react-native-fa-icons';
@@ -41,10 +40,10 @@ class Menu extends Component {
           >
           <LinearGradient 
           colors={['#658FD6', '#144395']}
-          style={styles.signInWithFacebookButton}
+          style={styles.buttonContainer}
         >
               <Icon name='language' style={styles.buttonIcon} />
-              <Text style={styles.signInText}>
+              <Text style={styles.buttonText}>
                   {'Vocabulario'}
               </Text>
             </LinearGradient>
@@ -55,10 +54,10 @@ class Menu extends Component {
           >
           <LinearGradient 
           colors={['#658FD6', '#144395']}
-          style={styles.signInWithFacebookButton}
+          style={styles.buttonContainer}
         >
               <Icon name='comments' style={styles.buttonIcon} />
-              <Text style={styles.signInText}>
+              <Text style={styles.buttonText}>
                   {'Pronunciación'}
               </Text>
             </LinearGradient>
@@ -69,10 +68,10 @@ class Menu extends Component {
           >
           <LinearGradient 
           colors={['#658FD6', '#144395']}
-          style={styles.signInWithFacebookButton}
+          style={styles.buttonContainer}
         >
               <Icon name='pencil' style={styles.buttonIcon} />
-              <Text style={styles.signInText}>
+              <Text style={styles.buttonText}>
                   {'Gramática'}
               </Text>
             </LinearGradient>
@@ -83,10 +82,10 @@ class Menu extends Component {
           >
           <LinearGradient 
           colors={['#658FD6', '#144395']}
-          style={styles.signInWithFacebookButton}
+          style={styles.buttonContainer}
         >
               <Icon name='info' style={styles.buttonIcon} />
-              <Text style={styles.signInText}>
+              <Text style={styles.buttonText}>
                   {'Acerca de'}
               </Text>
             </LinearGradient>
@@ -97,10 +96,10 @@ class Menu extends Component {
           >
           <LinearGradient 
           colors={['#658FD6', '#144395']}
-          style={styles.signInWithFacebookButton}
+          style={styles.buttonContainer}
         >
               <Icon name='sign-out' style={styles.buttonIcon} />
-              <Text style={styles.signInText}>
+              <Text style={styles.buttonText}>
                   {'Cerrar sesión'}
               </Text>
             </LinearGradient>
@@ -132,8 +131,7 @@ const styles = StyleSheet.create({
     width: 300,
     alignItems: 'center'
   },
-  buttonContainer: { width: '100%', padding: 10 },
-  signInWithFacebookButton: {
+  buttonContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -144,7 +142,7 @@ const styles = StyleSheet.create({
         margin: 5,
         elevation: 2
     },
-    signInText: {
+    buttonText: {
         color: 'white',
         marginLeft: 5,
         fontFamily: 'HelveticaNeue-Medium',
