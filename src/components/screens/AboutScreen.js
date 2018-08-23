@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import * as Colors from './styles/Colors';
 
 class About extends Component {
@@ -9,7 +10,10 @@ class About extends Component {
   render() {
     return (
 
-      <View style={styles.container}>
+      <LinearGradient 
+        colors={[Colors.backgroundTopColor, Colors.backgroundBottomColor]}
+        style={styles.container}
+      >
         <View style={styles.logoContainer}>
           <Image style={styles.logo} source={require('../../../images/similar_logo.png')} />
         </View>
@@ -20,7 +24,7 @@ class About extends Component {
             <Text style={styles.titleDesc}>Para ello combinamos el uso de las famosas tarjetas de aprendizaje (muy utilizadas en el estudio del idioma Chino) con el reaprovechamiento de los recursos que ofrece el nexo común del latín entre nuestro idioma, el español, y el inglés.</Text>
           </View>
 
-      </View>
+      </LinearGradient>
     );
   }
 }

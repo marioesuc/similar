@@ -53,6 +53,7 @@
 		9799E329F9684746AF3FE4F2 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E597C5D707BA4E83821686B8 /* FontAwesome.ttf */; };
 		1884B8F84FBF465C8EDB018F /* libVoice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E6CB29B29446A593107FBA /* libVoice.a */; };
 		E39883C01B654FC7BE2DCFA4 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA9D81033141BD8D9545B2 /* libRNSound.a */; };
+		C38E51A4AEAC4BDBB8217BAA /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE33E61222F04634B530704C /* libBVLinearGradient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,6 +379,8 @@
 		B1E6CB29B29446A593107FBA /* libVoice.a */ = {isa = PBXFileReference; name = "libVoice.a"; path = "libVoice.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		76C077C7A4AB4BBF898B732B /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		3DCA9D81033141BD8D9545B2 /* libRNSound.a */ = {isa = PBXFileReference; name = "libRNSound.a"; path = "libRNSound.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		3F46FB50C99240BE831ABE3F /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FE33E61222F04634B530704C /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,6 +413,7 @@
 				58168303F05D4028B49B4919 /* libTextToSpeech.a in Frameworks */,
 				1884B8F84FBF465C8EDB018F /* libVoice.a in Frameworks */,
 				E39883C01B654FC7BE2DCFA4 /* libRNSound.a in Frameworks */,
+				C38E51A4AEAC4BDBB8217BAA /* libBVLinearGradient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +604,7 @@
 				59C8C9EA793D4978BD06DFAE /* TextToSpeech.xcodeproj */,
 				0519C9E3381244388E3BA635 /* Voice.xcodeproj */,
 				76C077C7A4AB4BBF898B732B /* RNSound.xcodeproj */,
+				3F46FB50C99240BE831ABE3F /* BVLinearGradient.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1263,6 +1268,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1270,6 +1276,7 @@
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1294,6 +1301,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1301,6 +1309,7 @@
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1326,6 +1335,7 @@
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1350,6 +1360,7 @@
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1383,6 +1394,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1390,6 +1402,7 @@
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1423,6 +1436,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1430,6 +1444,7 @@
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1462,6 +1477,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1469,6 +1485,7 @@
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1501,6 +1518,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1508,6 +1526,7 @@
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;

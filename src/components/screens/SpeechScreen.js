@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Alert, View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modal';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 import { Button } from 'react-native-elements';
@@ -20,6 +21,7 @@ class Speech extends Component {
   componentWillMount() {
     Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
     this.props.loadSpeechData();
+    Tts.setDefaultLanguage('en');
 
     // We define the initial state once the component is mounted
     this.setState({
@@ -123,7 +125,6 @@ class Speech extends Component {
   // To achieve this we just take the english word from the database and see if
   // it's contained into the array returned by the speech component
   checkPronunciation() {
-    console.log(this.state.speechElems);
     if (this.state.speechElems.includes(this.props.currentCard.eng)) {
       this.setState({ speechResult: '¡Correcto!', speechCorrect: true });
     } else {
@@ -133,7 +134,10 @@ class Speech extends Component {
 
   render() { 
     return (
-      <View style={styles.container}>
+      <LinearGradient 
+        colors={[Colors.backgroundTopColor, Colors.backgroundBottomColor]}
+        style={styles.container}
+      >
 
       {/* Modal that is going to contain the flipping card */}
       <Modal isVisible={this.state.modalVisible}>
@@ -236,6 +240,7 @@ class Speech extends Component {
           </Text>
           <ProgressBarAnimated
             backgroundColor={Colors.progressBar}
+            borderColor={Colors.progressBarBorder}
             width={300}
             value={this.props.progress}
             backgroundColorOnComplete={Colors.progressBarComplete}
@@ -272,7 +277,7 @@ class Speech extends Component {
         </View>
 
 
-      </View>
+      </LinearGradient>
  
 
     );

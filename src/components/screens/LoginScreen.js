@@ -1,9 +1,10 @@
 // Component that renders screen related to the login
 
 import React, { Component } from 'react';
-import { Button, TextInput, View, Image, Text, StyleSheet } from 'react-native';
+import { TextInput, View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 import { loginEmailChanged, loginPasswordChanged, loginUser } from '../../actions';
 import * as Colors from './styles/Colors';
 
@@ -26,7 +27,10 @@ class Login extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <LinearGradient 
+        colors={[Colors.backgroundTopColor, Colors.backgroundBottomColor]}
+        style={styles.container}
+      >
         <View style={styles.logoContainer}>
           <Image style={styles.logo} source={require('../../../images/similar_logo.png')} />
         </View>
@@ -44,26 +48,29 @@ class Login extends Component {
           style={styles.input}
         />
         
-        <View style={styles.buttonsContainer}>
-            <View style={styles.buttonsSeparation}>
-                <Button
-                  title='Entrar'
-                  onPress={this.onButtonPress.bind(this)}
-                />
-            </View>
-            <View style={styles.registerButton} >
-                <Button
-                  title='Registro'
-                  onPress={() => {
-                    Actions.register();
-                  }}
-                />
-            </View>
-        </View>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={this.onButtonPress.bind(this)}
+        >
+          <Text style={styles.buttonText}>ENTRAR</Text>
+        </TouchableOpacity>
+
         <Text style={styles.errorTextStyle}>
           {this.props.error}
         </Text>
-      </View>
+        <TouchableOpacity style={styles.buttonBottom}
+        onPress={() => {
+                    Actions.register();
+                  }}
+        >
+          <Text
+            style={styles.bottomButtonText}
+            title="Registro"
+          >
+            Registro
+          </Text>
+        </TouchableOpacity>
+      </LinearGradient>
     );
   }
 }
@@ -92,17 +99,39 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 20,
     alignSelf: 'center',
-    color: 'red'
+    color: Colors.errorText
   },
   buttonsContainer: {
     flexDirection: 'row',
     width: 300
   },
+  buttonContainer: {
+    backgroundColor: Colors.transparentButton,
+    paddingVertical: 15,
+    width: 300
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: Colors.transparentButtonText,
+    fontWeight: '700'
+  },
+  bottomButtonText: {
+    textAlign: 'center',
+    color: '#FFF',
+    fontWeight: '700'
+  },
   buttonsSeparation: {
     flex: 1,
     marginRight: 10
   },
-  registerButton: { flex: 1 }
+  registerButton: { flex: 1 },
+  buttonBottom: {
+    backgroundColor: Colors.registerButton,
+    paddingVertical: 15,
+    width: '100%',
+    position: 'absolute',
+    bottom: 0
+  }
 });
 
 const mapStateToProps = ({ auth }) => {
