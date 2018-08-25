@@ -16,7 +16,7 @@ import { Card, VocabRow, CircleButton } from '../common';
 import { loadSpeechData, updateLearnedSpeechWords, deleteLearnedSpeechWords } from '../../actions';
 import * as Colors from './styles/Colors';
 
-class Speech extends Component {
+export class Speech extends Component {
 
   componentWillMount() {
     Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);

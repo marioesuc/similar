@@ -5,7 +5,7 @@ import { View, WebView, Text, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import * as Colors from './styles/Colors';
 
-class VideoViewer extends Component {
+export class VideoViewer extends Component {
 
   render() {
     return (

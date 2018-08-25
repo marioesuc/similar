@@ -9,9 +9,9 @@ import ListItem from '../common/ListItem';
 import * as Colors from './styles/Colors';
 import { loadGrammarData } from '../../actions';
 
-class Grammar extends Component {
+export class Grammar extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.loadGrammarData();
   }
 

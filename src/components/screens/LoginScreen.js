@@ -8,7 +8,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { loginEmailChanged, loginPasswordChanged, loginUser } from '../../actions';
 import * as Colors from './styles/Colors';
 
-class Login extends Component {
+export class Login extends Component {
 
   onEmailChange(text) {
     //loginEmailChanged es la función Action Creator que hemos importado arriba
@@ -138,7 +138,6 @@ const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading } = auth;
   return { email, password, error, loading };
 };
-
 
 export default connect(mapStateToProps, { 
   loginEmailChanged, loginPasswordChanged, loginUser 

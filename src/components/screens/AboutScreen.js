@@ -5,7 +5,7 @@ import { View, Image, Text, StyleSheet } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import * as Colors from './styles/Colors';
 
-class About extends Component {
+export class About extends Component {
 
   render() {
     return (
