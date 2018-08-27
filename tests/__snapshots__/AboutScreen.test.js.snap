@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About Screen Component renders correctly 1`] = `
+<LinearGradient
+  colors={
+    Array [
+      "#C1E8FC",
+      "#5D9CBB",
+    ]
+  }
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#ccf1f3",
+      "flex": 1,
+      "padding": 20,
+    }
+  }
+>
+  <Component>
+    <Image
+      source={
+        Object {
+          "testUri": "../../../images/similar_logo.png",
+        }
+      }
+      style={
+        Object {
+          "height": 173,
+          "width": 200,
+        }
+      }
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderWidth": 0,
+        "elevation": 2,
+        "margin": 10,
+        "padding": 10,
+        "width": "95%",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 20,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      ¿Qué es Similar?
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "padding": 10,
+        }
+      }
+    >
+      Similar no es una aplicación cualquiera para aprender idiomas. Nosotros, los creadores, creemos que un buen método de aprendizaje es fundamental para memorizar de la forma más eficiente y rápida posible.
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "padding": 10,
+        }
+      }
+    >
+      Para ello combinamos el uso de las famosas tarjetas de aprendizaje (muy utilizadas en el estudio del idioma Chino) con el reaprovechamiento de los recursos que ofrece el nexo común del latín entre nuestro idioma, el español, y el inglés.
+    </Text>
+  </Component>
+</LinearGradient>
+`;

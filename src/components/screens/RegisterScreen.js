@@ -12,7 +12,7 @@ import {
 } from '../../actions';
 import * as Colors from './styles/Colors';
 
-class Register extends Component {
+export class Register extends Component {
 
   onEmailChange(text) {
     //registerEmailChanged es la función Action Creator que hemos importado arriba

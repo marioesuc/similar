@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Screen Component renders correctly 1`] = `
+<LinearGradient
+  colors={
+    Array [
+      "#C1E8FC",
+      "#5D9CBB",
+    ]
+  }
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#ccf1f3",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Component>
+    <Image
+      source={
+        Object {
+          "testUri": "../../../images/similar_logo.png",
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 250,
+        }
+      }
+    />
+  </Component>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="E-mail"
+    style={
+      Object {
+        "height": 44,
+        "marginBottom": 10,
+        "padding": 10,
+        "width": 300,
+      }
+    }
+  />
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Contraseña"
+    secureTextEntry={true}
+    style={
+      Object {
+        "height": 44,
+        "marginBottom": 10,
+        "padding": 10,
+        "width": 300,
+      }
+    }
+  />
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "backgroundColor": "rgba(255,255,255,0.4)",
+        "paddingVertical": 15,
+        "width": 300,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#4D7DA5",
+          "fontWeight": "700",
+          "textAlign": "center",
+        }
+      }
+    >
+      ENTRAR
+    </Text>
+  </TouchableOpacity>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "alignSelf": "center",
+        "color": "#B32156",
+        "fontSize": 20,
+        "marginTop": 20,
+      }
+    }
+  />
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#4278A5",
+        "bottom": 0,
+        "paddingVertical": 15,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#FFF",
+          "fontWeight": "700",
+          "textAlign": "center",
+        }
+      }
+      title="Registro"
+    >
+      Registro
+    </Text>
+  </TouchableOpacity>
+</LinearGradient>
+`;

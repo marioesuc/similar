@@ -15,7 +15,7 @@ import { Card, VocabRow, CircleButton } from '../common';
 import { loadVocabData, updateLearnedVocabWords, deleteLearnedVocabWords } from '../../actions';
 import * as Colors from './styles/Colors';
 
-class Vocab extends Component {
+export class Vocab extends Component {
 
 
   componentWillMount() {

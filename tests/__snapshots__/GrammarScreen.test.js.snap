@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grammar Screen Component renders correctly 1`] = `
+<LinearGradient
+  colors={
+    Array [
+      "#C1E8FC",
+      "#5D9CBB",
+    ]
+  }
+  style={
+    Object {
+      "backgroundColor": "#ccf1f3",
+      "flex": 1,
+    }
+  }
+>
+  <FlatList
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReachedThreshold={2}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  />
+</LinearGradient>
+`;

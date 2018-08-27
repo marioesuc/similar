@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register Screen Component renders correctly 1`] = `
+<LinearGradient
+  colors={
+    Array [
+      "#C1E8FC",
+      "#5D9CBB",
+    ]
+  }
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#ccf1f3",
+      "flex": 1,
+    }
+  }
+>
+  <Component>
+    <Image
+      source={
+        Object {
+          "testUri": "../../../images/similar_logo.png",
+        }
+      }
+      style={
+        Object {
+          "height": 173,
+          "marginTop": 20,
+          "width": 200,
+        }
+      }
+    />
+  </Component>
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="E-mail"
+    style={
+      Object {
+        "height": 44,
+        "marginBottom": 10,
+        "padding": 10,
+        "width": 300,
+      }
+    }
+  />
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Introduce una contraseña"
+    secureTextEntry={true}
+    style={
+      Object {
+        "height": 44,
+        "marginBottom": 10,
+        "padding": 10,
+        "width": 300,
+      }
+    }
+  />
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Repite la contraseña"
+    secureTextEntry={true}
+    style={
+      Object {
+        "height": 44,
+        "marginBottom": 10,
+        "padding": 10,
+        "width": 300,
+      }
+    }
+  />
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "backgroundColor": "rgba(255,255,255,0.4)",
+        "paddingVertical": 15,
+        "width": 300,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#4D7DA5",
+          "fontWeight": "700",
+          "textAlign": "center",
+        }
+      }
+    >
+      REGISTRARSE
+    </Text>
+  </TouchableOpacity>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "alignSelf": "center",
+        "color": "#B32156",
+        "fontSize": 20,
+        "marginTop": 20,
+      }
+    }
+  />
+</LinearGradient>
+`;

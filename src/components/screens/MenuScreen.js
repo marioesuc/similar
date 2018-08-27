@@ -9,7 +9,7 @@ import { logoutUser } from '../../actions';
 import * as Colors from './styles/Colors';
 import Icon from 'react-native-fa-icons';
 
-class Menu extends Component {
+export class Menu extends Component {
   constructor(props) {
     super(props);
     
