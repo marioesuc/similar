@@ -198,8 +198,8 @@ export class Speech extends Component {
                       this.setState({
                         modalVisible: false,
                         flipCard: false,
-                        optCorrect: undefined,
-                        optChosen: undefined
+                        speechResult: '',
+                        speechCorrect: undefined
                       });
                     }}
                   />
